@@ -20,5 +20,10 @@ class DatabaseSeeder extends Seeder
              'name' => 'Morten Bak',
              'email' => 'meb@indexed.dk',
          ]);
+
+         $this->call([
+             RoleSeeder::class,
+             PermissionSeeder::class,
+         ]);
     }
 }
