@@ -35,20 +35,21 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'create permissions']);
 
 
-        $superAdmin = Role::findByName('super-admin')->givePermissionTo(Permission::all());
-        $admin = Role::findByName('admin')->givePermissionTo([
+        $superAdmin = Role::findByName('Super Admin')->syncPermissions(Permission::all());
+        $admin = Role::findByName('Admin')->syncPermissions([
             'access dashboard',
             'view users',
             'edit users',
             'create users',
-            'view roles',
-            'edit roles',
-            'create roles',
-            'view permissions',
-            'edit permissions',
-            'create permissions',
+//            'view roles',
+//            'edit roles',
+//            'create roles',
+//            'view permissions',
+//            'edit permissions',
+//            'create permissions',
         ]);
 
-        $superAdminUser = User::query()->find(1)->assignRole('super-admin');
+        $superAdminUser = User::query()->find(1)->assignRole('Super Admin');
+        $adminUser = User::query()->find(2)->assignRole('Admin');
     }
 }
