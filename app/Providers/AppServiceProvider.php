@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 
@@ -34,5 +35,18 @@ class AppServiceProvider extends ServiceProvider
         // Since this is a performance concern only, don't halt
         // production for violations.
         Model::preventLazyLoading(! $this->app->isProduction());
+
+
+        Builder::macro('search', function ($field, $string) {
+            if(is_array($field)) {
+                foreach($field as $item) {
+                    $this->orWhere($item, 'like', '%'.$string.'%');
+                }
+                return $this;
+            } else {
+                return $string ? $this->where($field, 'like', '%'.$string.'%') : $this;
+            }
+
+        });
     }
 }

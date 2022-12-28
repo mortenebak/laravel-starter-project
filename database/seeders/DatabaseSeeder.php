@@ -14,21 +14,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-         \App\Models\User::factory()->create([
-             'name' => 'Morten Bak Super Admin',
-             'email' => 'meb@indexed.dk',
-         ]);
 
         \App\Models\User::factory()->create([
-            'name' => 'Morten Bak Admin',
+            'name'  => 'Morten Bak Super Admin',
+            'email' => 'meb@indexed.dk',
+        ]);
+
+        \App\Models\User::factory()->create([
+            'name'  => 'Morten Bak Admin',
             'email' => 'meb+admin@indexed.dk',
         ]);
 
-         $this->call([
-             RoleSeeder::class,
-             PermissionSeeder::class,
-         ]);
+        \App\Models\User::factory(100)->create();
+
+        $this->call([
+            RoleSeeder::class,
+            PermissionSeeder::class,
+        ]);
     }
 }
