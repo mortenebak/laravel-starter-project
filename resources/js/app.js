@@ -8,4 +8,7 @@ Alpine.plugin(collapse)
 import persist from '@alpinejs/persist'
 Alpine.plugin(persist)
 
+import focus from '@alpinejs/focus'
+Alpine.plugin(focus)
+
 Alpine.start()
