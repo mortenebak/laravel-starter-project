@@ -1,4 +1,4 @@
-<ul class="py-3 space-y-4">
+<ul class="py-3 space-y-4 dark:text-slate-200">
 
     @can('access dashboard')
         <li class="mb-0.5">
@@ -31,7 +31,7 @@
                         </div>
                     </div>
                     <div class="flex shrink-0 ml-2">
-                        <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-text transition ease-in-out transform rotate-180" viewBox="0 0 12 12" :class="expanded ? 'rotate-180' : 'rotate-0'">
+                        <svg class="w-3 h-3 shrink-0 ml-1 fill-current dark:fill-slate-200 text-text transition ease-in-out transform rotate-180" viewBox="0 0 12 12" :class="expanded ? 'rotate-180' : 'rotate-0'">
                             <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z"></path>
                         </svg>
                     </div>
@@ -41,7 +41,7 @@
             <div x-show="expanded" x-collapse="">
                 <ul class="pl-8 mt-1">
                     <li class="mb-1 last:mb-0">
-                        <a aria-current="page" class="px-3 py-[2px] block text-text rounded transition-all duration-300 ease-in-out truncate hover:bg-emerald-300-dark " href="{{ route('admin.users') }}">
+                        <a aria-current="page" class="px-3 py-[2px] block text-text dark:text-slate-200 rounded transition-all duration-300 ease-in-out truncate hover:bg-emerald-300-dark " href="{{ route('admin.users') }}">
                             <div class="text-sm duration-200">
                                 {{ __('Users') }}
                             </div>
@@ -49,7 +49,7 @@
                     </li>
                     @can('view roles')
                         <li class="mb-1 last:mb-0">
-                            <a aria-current="page" class="px-3 py-[2px] block text-text rounded transition-all duration-300 ease-in-out truncate hover:bg-emerald-300-dark " href="{{ route('admin.roles') }}">
+                            <a aria-current="page" class="px-3 py-[2px] block text-text dark:text-slate-200 rounded transition-all duration-300 ease-in-out truncate hover:bg-emerald-300-dark " href="{{ route('admin.roles') }}">
                                 <div class="text-sm duration-200">
                                     {{ __('Roles') }}
                                 </div>
@@ -58,7 +58,7 @@
                     @endcan
                     @can('view permissions')
                         <li class="mb-1 last:mb-0">
-                            <a aria-current="page" class="px-3 py-[2px] block text-text rounded transition-all duration-300 ease-in-out truncate hover:bg-emerald-300-dark " href="{{ route('admin.permissions') }}">
+                            <a aria-current="page" class="px-3 py-[2px] block text-text dark:text-slate-200 rounded transition-all duration-300 ease-in-out truncate hover:bg-emerald-300-dark " href="{{ route('admin.permissions') }}">
                                 <div class="text-sm duration-200">
                                     {{ __('Permissions') }}
                                 </div>

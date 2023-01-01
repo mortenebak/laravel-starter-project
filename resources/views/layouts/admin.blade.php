@@ -4,9 +4,9 @@
 
     <div class="md:flex md:flex-col md:h-screen" x-data="{mobileOpen: false}">
         <div class="md:flex md:flex-shrink-0">
-            <div class="flex items-center justify-between px-6 py-4 bg-main md:flex-shrink-0 md:justify-center md:w-56">
+            <div class="flex items-center justify-between px-6 py-4 bg-main dark:bg-slate-800 md:flex-shrink-0 md:justify-center md:w-56">
 
-                <a class="mt-1 font-bold text-text uppercase" href="/">
+                <a class="mt-1 font-bold text-text dark:text-slate-200 uppercase" href="/">
                     {{ config('app.name') }}
                 </a>
                 <button type="button" class="md:hidden" x-on:click="mobileOpen = !mobileOpen">
@@ -15,15 +15,23 @@
                     </svg>
                 </button>
             </div>
-            <div x-transition="" x-show="mobileOpen" class="md:hidden px-5 bg-main block" style="display: none;">
+            <div x-transition="" x-show="mobileOpen" class="md:hidden px-5 bg-main dark:bg-slate-800 block" style="display: none;">
                 <x-admin-navigation></x-admin-navigation>
             </div>
-            <div class="md:text-md flex items-center justify-between p-4 w-full text-sm bg-main-white border-b md:px-12 md:py-0">
+            <div class="md:text-md flex items-center justify-between p-4 w-full text-sm bg-main-white dark:bg-slate-700 border-b dark:border-b-slate-800 md:px-12 md:py-0">
+                <button @click="darkMode = !darkMode" class="dark:text-white">
+                    <svg x-show="darkMode" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+                    </svg>
+                    <svg x-show="!darkMode" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+                    </svg>
 
+                </button>
                 <div x-data="{dropdownMenu: false}" class="relative ml-auto" @click.outside="dropdownMenu = false" @keyup.escape.window="dropdownMenu = false">
                     <button type="button" class="mt-1" @click="dropdownMenu = ! dropdownMenu">
                         <div class="group flex items-center cursor-pointer select-none">
-                            <div class="mr-1 text-gray-500 hover:text-gray-900 group-hover:text-primary focus:text-primary whitespace-nowrap">
+                            <div class="mr-1 text-gray-500 dark:text-slate-200 hover:text-gray-900 group-hover:text-primary focus:text-primary whitespace-nowrap">
                                 <span>{{ auth()->user()->name }}</span>
                             </div>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-5 h-5 fill-gray-500 group-hover:fill-gray-900 group-hover:fill-primary focus:fill-primary">
@@ -32,7 +40,7 @@
                         </div>
                     </button>
                     <!-- Dropdown list -->
-                    <div x-show="dropdownMenu" x-transition="" class="absolute right-0 p-2 mt-2 bg-white border border-gray-200 rounded-md overflow-hidden shadow-lg w-44 space-y-2" style="z-index: 51; display: none;">
+                    <div x-show="dropdownMenu" x-transition="" class="absolute top-0 right-0 p-2 mt-2 bg-white border border-gray-200 rounded-md overflow-hidden shadow-lg w-44 space-y-2" style="z-index: 51; display: none;">
                         <a href="/admin/employees/edit-account" class="flex space-x-2 items-center p-2 text-sm text-gray-500 hover:text-gray-900 hover:bg-secondary hover:text-primary rounded-md transition ease-in-out">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"></path>
@@ -64,10 +72,10 @@
             </div>
         </div>
         <div class="md:flex md:flex-grow md:overflow-hidden">
-            <div class="hidden flex-shrink-0 p-5 w-56 bg-main overflow-y-auto md:block">
+            <div class="hidden flex-shrink-0 p-5 w-56 bg-main dark:bg-slate-800 overflow-y-auto md:block">
                 <x-admin-navigation></x-admin-navigation>
             </div>
-            <div class="px-4 pt-8 pb-16 md:flex-1 md:px-10 md:overflow-y-auto bg-main-white ">
+            <div class="px-4 pt-8 pb-16 md:flex-1 md:px-10 md:overflow-y-auto bg-main-white dark:bg-slate-700 ">
 
                 @yield('content')
 

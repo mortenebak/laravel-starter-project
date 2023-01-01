@@ -1,6 +1,6 @@
 <div>
     <div class="flex justify-between items-center mb-5 h-10">
-        <h1 class="text-3xl font-bold">
+        <h1 class="text-3xl font-bold  dark:text-slate-200">
             Users
         </h1>
         <div>
@@ -50,13 +50,11 @@
                         <x-table.cell class="flex-shrink-0 w-1/4">
                             @can('view users')
                                 <a href="#">
-                                    <x-secondary-button>{{ __('Show') }}</x-secondary-button>
+                                    <button class="btn btn-secondary">{{ __('Show') }}</button>
                                 </a>
                             @endcan
                             @can('edit users')
-                                <a href="#">
-                                    <x-secondary-button>{{ __('Edit') }}</x-secondary-button>
-                                </a>
+                                <button class="btn btn-secondary" wire:click='$emit("openModal", "admin.users.edit-user", {{ json_encode(["user" => $user->id]) }})'>{{ __('Edit') }}</button>
                             @endcan
 
                             @can('delete users')
