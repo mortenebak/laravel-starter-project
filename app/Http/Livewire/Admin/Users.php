@@ -10,6 +10,11 @@ class Users extends Component
 {
     use WithPagination;
 
+    protected $listeners = [
+        'deleteUser' => 'destroy',
+        'userUpdated' => '$refresh',
+    ];
+
     public int $perPage = 25;
     public string $sortField = 'name';
     public bool $sortAsc = true;
@@ -35,11 +40,21 @@ class Users extends Component
     public function render()
     {
         return view('livewire.admin.users', [
-                    'users' => User::query()->search($this->searchableFields, $this->search)
-                       ->with('roles')
-                       ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
-                       ->paginate($this->perPage)
-                    ])
+            'users' => User::query()->search($this->searchableFields, $this->search)
+                ->with('roles')
+                ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+                ->paginate($this->perPage)
+        ])
             ->extends('layouts.admin');
+    }
+
+    public function destroy($id)
+    {
+        try {
+            User::find($id)->delete();
+            session()->flash('success', "User Deleted Successfully!!");
+        } catch (\Exception $e) {
+            session()->flash('error', "Something goes wrong while deleting User!!");
+        }
     }
 }

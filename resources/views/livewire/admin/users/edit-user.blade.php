@@ -1,3 +1,23 @@
-<div>
-   {{ json_encode($user) }}
+<div class="p-4 w-full">
+
+    <h2>Edit user</h2>
+
+    <form>
+        <input type="hidden" wire:model="category_id">
+        <div class="form-group mb-3">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Enter Name" wire:model="name">
+            @error('name') <span class="text-danger">{{ $message }}</span>@enderror
+        </div>
+        <div class="form-group mb-3">
+            <label for="email">email:</label>
+            <textarea class="form-control @error('email') is-invalid @enderror" id="email" wire:model="email" placeholder="Enter email"></textarea>
+            @error('email') <span class="text-danger">{{ $message }}</span>@enderror
+        </div>
+        <div class="d-grid gap-2">
+            <button wire:click.prevent="update()" class="btn btn-success btn-block">Save</button>
+            <button wire:click.prevent="cancel()" class="btn btn-danger">Cancel</button>
+        </div>
+    </form>
+
 </div>

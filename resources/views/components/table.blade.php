@@ -1,13 +1,13 @@
-<div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg mb-6">
-    <table class="min-w-full w-full divide-y divide-gray-200">
+<div class="shadow overflow-hidden sm:rounded-lg mb-6">
+    <table class="min-w-full w-full text-gray-500 dark:text-gray-400">
 
-        <thead class="bg-gray-50">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 {{$head}}
             </tr>
         </thead>
 
-        <tbody class="bg-white divide-y divide-gray-200">
+        <tbody class="">
             {{$body}}
         </tbody>
     </table>

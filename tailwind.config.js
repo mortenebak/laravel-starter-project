@@ -2,6 +2,9 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
     darkMode: 'class',
+    safelist: [
+        'sm:max-w-5xl'
+    ],
     theme: {
         extend: {
             fontFamily: {
@@ -61,6 +64,8 @@ module.exports = {
         './resources/**/*.blade.php',
         './resources/**/*.vue',
         './resources/**/*.twig',
+        './vendor/wire-elements/modal/resources/views/*.blade.php',
+        './storage/framework/views/*.php',
     ],
     plugins: [
         require('@tailwindcss/forms'),

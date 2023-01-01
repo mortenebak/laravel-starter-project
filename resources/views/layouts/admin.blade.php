@@ -4,7 +4,7 @@
 
     <div class="md:flex md:flex-col md:h-screen" x-data="{mobileOpen: false}">
         <div class="md:flex md:flex-shrink-0">
-            <div class="flex items-center justify-between px-6 py-4 bg-main dark:bg-slate-800 md:flex-shrink-0 md:justify-center md:w-56">
+            <div class="flex items-center justify-between px-6 py-4 bg-main dark:bg-gray-900 md:flex-shrink-0 md:justify-center md:w-56">
 
                 <a class="mt-1 font-bold text-text dark:text-slate-200 uppercase" href="/">
                     {{ config('app.name') }}
@@ -15,10 +15,10 @@
                     </svg>
                 </button>
             </div>
-            <div x-transition="" x-show="mobileOpen" class="md:hidden px-5 bg-main dark:bg-slate-800 block" style="display: none;">
+            <div x-transition="" x-show="mobileOpen" class="md:hidden px-5 bg-main dark:bg-gray-900 block" style="display: none;">
                 <x-admin-navigation></x-admin-navigation>
             </div>
-            <div class="md:text-md flex items-center justify-between p-4 w-full text-sm bg-main-white dark:bg-slate-700 border-b dark:border-b-slate-800 md:px-12 md:py-0">
+            <div class="md:text-md flex items-center justify-between p-4 w-full text-sm bg-main-white dark:bg-gray-800 border-b dark:border-b-slate-800 md:px-12 md:py-0">
                 <button @click="darkMode = !darkMode" class="dark:text-white">
                     <svg x-show="darkMode" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
@@ -72,10 +72,10 @@
             </div>
         </div>
         <div class="md:flex md:flex-grow md:overflow-hidden">
-            <div class="hidden flex-shrink-0 p-5 w-56 bg-main dark:bg-slate-800 overflow-y-auto md:block">
+            <div class="hidden flex-shrink-0 p-5 w-56 bg-main dark:bg-gray-900 overflow-y-auto md:block">
                 <x-admin-navigation></x-admin-navigation>
             </div>
-            <div class="px-4 pt-8 pb-16 md:flex-1 md:px-10 md:overflow-y-auto bg-main-white dark:bg-slate-700 ">
+            <div class="px-4 pt-8 pb-16 md:flex-1 md:px-10 md:overflow-y-auto bg-main-white dark:bg-gray-800 ">
 
                 @yield('content')
 
