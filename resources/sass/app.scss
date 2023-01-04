@@ -49,12 +49,12 @@
  * .bg-pattern-graph-paper { ... }
  * .skew-45 { ... }
  */
-
+/* purgecss start ignore */
 [x-cloak] {
     display: none;
 }
 
-/* purgecss start ignore */
+
 .btn {
     &.btn-primary {
         @apply inline-flex items-center p-2 rounded-md font-semibold text-xs text-white uppercase tracking-widest bg-main hover:bg-main-dark focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150;
