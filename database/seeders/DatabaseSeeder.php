@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         \App\Models\User::factory()->create([
             'name'  => 'Morten Bak Super Admin',
@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'meb+admin@indexed.dk',
         ]);
 
-        \App\Models\User::factory(100)->create();
+        \App\Models\User::factory(4)->create();
 
         $this->call([
             RoleSeeder::class,

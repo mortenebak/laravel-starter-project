@@ -15,13 +15,23 @@
             <input type="text"
                    class="w-1/4 rounded border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                    wire:model="search" placeholder="Type in and search...">
+            <div class="flex space-x-4">
+                <select wire:model="roleType"
+                        class="rounded border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option value="">All roles</option>
+                    @foreach($roles as $role)
+                        <option value="{{ $role->name }}">{{ $role->name }}</option>
+                    @endforeach
+                </select>
 
-            <select wire:model="perPage"
-                    class="rounded border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option value="10">{{ __('10 pr side') }}</option>
-                <option value="25">2{{ __('5 pr side') }}</option>
-                <option value="50">{{ __('50 pr side') }}</option>
-            </select>
+                <select wire:model="perPage"
+                        class="rounded border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option value="10">{{ __('10 pr side') }}</option>
+                    <option value="25">2{{ __('5 pr side') }}</option>
+                    <option value="50">{{ __('50 pr side') }}</option>
+                </select>
+            </div>
+
         </div>
 
         <x-table wire:loading.class="opacity-50">
@@ -46,7 +56,7 @@
                         </x-table.cell>
                         <x-table.cell class="flex-1">
                             @foreach($user->roles as $role)
-                                <p class="inline-flex bg-gray-100 text-gray-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
+                                <p class="inline-flex bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
                                     {{ $role->name }}
                                 </p>
                             @endforeach

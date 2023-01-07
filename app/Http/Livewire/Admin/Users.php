@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Spatie\Permission\Models\Role;
 
 class Users extends Component
 {
@@ -19,6 +20,7 @@ class Users extends Component
     public string $sortField = 'name';
     public bool $sortAsc = true;
     public string $search = '';
+    public string $roleType = '';
     public array $searchableFields = ['name', 'email'];
 
     public function updatingSearch(): void
@@ -42,8 +44,10 @@ class Users extends Component
         return view('livewire.admin.users', [
             'users' => User::query()->search($this->searchableFields, $this->search)
                 ->with('roles')
-                ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
-                ->paginate($this->perPage)
+                ->when($this->sortField, fn ($query) => $query->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc'))
+                ->when($this->roleType, fn($query) => $query->role($this->roleType))
+                ->paginate($this->perPage),
+            'roles' => Role::all(),
         ])
             ->extends('layouts.admin');
     }

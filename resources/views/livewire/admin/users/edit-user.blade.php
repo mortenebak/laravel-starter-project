@@ -1,8 +1,6 @@
 <div class="p-4 w-full dark:bg-gray-900 flex flex-col space-y-4">
 
-
     <h2 class="text-2xl font-bold dark:text-white">Edit user</h2>
-
 
     <div class="form-group">
         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
@@ -19,6 +17,21 @@
                placeholder="Enter email" required>
         @error('email') <span class="text-danger">{{ $message }}</span>@enderror
     </div>
+
+    @can('edit roles')
+        <div class="form-group">
+            <label for="userRoles" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Roles</label>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                @foreach($roles as $role)
+                    <div class="flex items-center">
+                        <input type="checkbox" wire:model="userRoles" value="{{ $role->id }}"
+                               class="form-checkbox h-5 w-5 text-blue-600">
+                        <label class="ml-2 text-gray-700 dark:text-white">{{ $role->name }}</label>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    @endcan
 
     <div>
         <button wire:click.prevent="update()"

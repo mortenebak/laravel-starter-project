@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin\Users;
 
 use App\Models\User;
 use LivewireUI\Modal\ModalComponent;
+use Spatie\Permission\Models\Role;
 
 class EditUser extends ModalComponent
 {
@@ -12,6 +13,7 @@ class EditUser extends ModalComponent
 
     public string $name = '';
     public string $email = '';
+    public array $userRoles = [];
 
     // set validation rules
     protected $rules = [
@@ -30,6 +32,9 @@ class EditUser extends ModalComponent
         $this->name = $this->user->name;
         $this->email = $this->user->email;
 
+        // get user roles
+        $this->userRoles = $this->user->roles->pluck('id')->toArray() ?? [];
+
     }
 
     public function update(){
@@ -41,9 +46,11 @@ class EditUser extends ModalComponent
                 'name' => $this->name,
                 'email' => $this->email,
             ]);
+
+            // Update roles
+            $this->user->syncRoles($this->userRoles);
+
             session()->flash('success','User Updated Successfully!!');
-
-
 
             // emit event to refresh users table
             $this->emit('userUpdated');
@@ -59,6 +66,9 @@ class EditUser extends ModalComponent
 
     public function render()
     {
-        return view('livewire.admin.users.edit-user');
+        return view('livewire.admin.users.edit-user', [
+            'user' => $this->user,
+            'roles' => Role::all(),
+        ]);
     }
 }

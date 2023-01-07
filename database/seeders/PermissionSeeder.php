@@ -40,15 +40,10 @@ class PermissionSeeder extends Seeder
             'view users',
             'edit users',
             'create users',
-//            'view roles',
-//            'edit roles',
-//            'create roles',
-//            'view permissions',
-//            'edit permissions',
-//            'create permissions',
         ]);
 
         $superAdminUser = User::query()->find(1)->assignRole('Super Admin');
+        $superAdminUser = User::query()->find(1)->assignRole('Admin');
         $adminUser = User::query()->find(2)->assignRole('Admin');
     }
 }
