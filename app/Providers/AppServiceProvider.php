@@ -36,12 +36,12 @@ class AppServiceProvider extends ServiceProvider
         // production for violations.
         Model::preventLazyLoading(! $this->app->isProduction());
 
-
         Builder::macro('search', function ($field, $string) {
             if (is_array($field)) {
                 foreach ($field as $item) {
                     $this->orWhere($item, 'like', '%'.$string.'%');
                 }
+
                 return $this;
             } else {
                 return $string ? $this->where($field, 'like', '%'.$string.'%') : $this;

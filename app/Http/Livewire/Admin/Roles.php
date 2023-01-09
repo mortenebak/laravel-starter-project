@@ -18,10 +18,15 @@ class Roles extends Component
     ];
 
     public int $perPage = 25;
+
     public string $sortField = 'name';
+
     public bool $sortAsc = true;
+
     public string $search = '';
+
     public array $searchableFields = ['name'];
+
     public function updatingSearch(): void
     {
         $this->gotoPage(1);
@@ -30,7 +35,7 @@ class Roles extends Component
     public function sortBy($field)
     {
         if ($this->sortField === $field) {
-            $this->sortAsc = !$this->sortAsc;
+            $this->sortAsc = ! $this->sortAsc;
         } else {
             $this->sortAsc = true;
         }
@@ -54,9 +59,9 @@ class Roles extends Component
     {
         try {
             Role::find($id)->delete();
-            session()->flash('success', "Role Deleted Successfully!");
+            session()->flash('success', 'Role Deleted Successfully!');
         } catch (\Exception $e) {
-            session()->flash('error', "Something goes wrong while deleting role!");
+            session()->flash('error', 'Something goes wrong while deleting role!');
         }
     }
 }

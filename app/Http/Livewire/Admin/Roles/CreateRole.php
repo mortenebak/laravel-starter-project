@@ -9,6 +9,7 @@ use Spatie\Permission\Models\Role;
 class CreateRole extends ModalComponent
 {
     public string $name = '';
+
     public array $rolePermissions = [];
 
     // set validation rules
@@ -39,12 +40,10 @@ class CreateRole extends ModalComponent
             $this->emit('roleCreated');
 
             $this->closeModal();
-
         } catch (\Exception $e) {
             session()->flash('error', 'Something goes wrong while creating the permission!!');
         }
     }
-
 
     public function cancel()
     {

@@ -35,12 +35,10 @@ class CreatePermission extends ModalComponent
             $this->emit('permissionCreated');
 
             $this->closeModal();
-
         } catch (\Exception $e) {
             session()->flash('error', 'Something goes wrong while creating the permission!!');
         }
     }
-
 
     public function cancel()
     {
@@ -51,5 +49,4 @@ class CreatePermission extends ModalComponent
     {
         return view('livewire.admin.permissions.create-permission');
     }
-
 }

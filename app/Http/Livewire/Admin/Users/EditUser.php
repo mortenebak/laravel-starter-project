@@ -8,11 +8,12 @@ use Spatie\Permission\Models\Role;
 
 class EditUser extends ModalComponent
 {
-
     public $user;
 
     public string $name = '';
+
     public string $email = '';
+
     public array $userRoles = [];
 
     // set validation rules
@@ -34,13 +35,13 @@ class EditUser extends ModalComponent
 
         // get user roles
         $this->userRoles = $this->user->roles->pluck('id')->toArray() ?? [];
-
     }
 
-    public function update(){
+    public function update()
+    {
         // Validate request
         $this->validate();
-        try{
+        try {
             // Update category
             $this->user->update([
                 'name' => $this->name,
@@ -50,19 +51,16 @@ class EditUser extends ModalComponent
             // Update roles
             $this->user->syncRoles($this->userRoles);
 
-            session()->flash('success','User Updated Successfully!!');
+            session()->flash('success', 'User Updated Successfully!!');
 
             // emit event to refresh users table
             $this->emit('userUpdated');
 
             $this->closeModal();
-
-        }catch(\Exception $e){
-            session()->flash('error','Something goes wrong while updating user!!');
-
+        } catch(\Exception $e) {
+            session()->flash('error', 'Something goes wrong while updating user!!');
         }
     }
-
 
     public function render()
     {

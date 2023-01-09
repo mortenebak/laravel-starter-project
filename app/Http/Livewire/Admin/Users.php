@@ -18,10 +18,15 @@ class Users extends Component
     ];
 
     public int $perPage = 25;
+
     public string $sortField = 'name';
+
     public bool $sortAsc = true;
+
     public string $search = '';
+
     public string $roleType = '';
+
     public array $searchableFields = ['name', 'email'];
 
     public function updatingSearch(): void
@@ -32,7 +37,7 @@ class Users extends Component
     public function sortBy($field)
     {
         if ($this->sortField === $field) {
-            $this->sortAsc = !$this->sortAsc;
+            $this->sortAsc = ! $this->sortAsc;
         } else {
             $this->sortAsc = true;
         }
@@ -46,7 +51,7 @@ class Users extends Component
             'users' => User::query()->search($this->searchableFields, $this->search)
                 ->with('roles')
                 ->when($this->sortField, fn ($query) => $query->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc'))
-                ->when($this->roleType, fn($query) => $query->role($this->roleType))
+                ->when($this->roleType, fn ($query) => $query->role($this->roleType))
                 ->paginate($this->perPage),
             'roles' => Role::all(),
         ])
@@ -57,9 +62,9 @@ class Users extends Component
     {
         try {
             User::find($id)->delete();
-            session()->flash('success', "User Deleted Successfully!!");
+            session()->flash('success', 'User Deleted Successfully!!');
         } catch (\Exception $e) {
-            session()->flash('error', "Something goes wrong while deleting User!!");
+            session()->flash('error', 'Something goes wrong while deleting User!!');
         }
     }
 }

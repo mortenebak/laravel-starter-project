@@ -11,9 +11,10 @@ use LivewireUI\Modal\ModalComponent;
 
 class CreateUser extends ModalComponent
 {
-
     public $name;
+
     public $email;
+
     public $password = '';
 
     protected $rules = [
@@ -46,7 +47,6 @@ class CreateUser extends ModalComponent
             $this->emit('userCreated');
 
             $this->closeModal();
-
         } catch (\Exception $e) {
             session()->flash('error', 'Something goes wrong while creating the user!');
         }

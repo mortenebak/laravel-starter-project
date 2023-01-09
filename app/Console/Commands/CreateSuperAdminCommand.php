@@ -29,7 +29,6 @@ class CreateSuperAdminCommand extends Command
      */
     public function handle(): int
     {
-
         // ask for the user's name
         $name = $this->ask('What is the users name?');
 
@@ -50,7 +49,7 @@ class CreateSuperAdminCommand extends Command
         ]);
 
         // assign the role
-        if($isSuperAdmin) {
+        if ($isSuperAdmin) {
             $user->assignRole('Super Admin');
         }
 

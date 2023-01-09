@@ -7,7 +7,6 @@ use Spatie\Permission\Models\Permission;
 
 class EditPermission extends ModalComponent
 {
-
     public $permission;
 
     public string $name = '';
@@ -26,7 +25,6 @@ class EditPermission extends ModalComponent
     {
         $this->permission = Permission::find($permission);
         $this->name = $this->permission->name;
-
     }
 
     public function update()
@@ -40,15 +38,12 @@ class EditPermission extends ModalComponent
             ]);
             session()->flash('success', 'Permission Updated Successfully!!');
 
-
             // emit event to refresh permissions table
             $this->emit('permissionUpdated');
 
             $this->closeModal();
-
         } catch (\Exception $e) {
             session()->flash('error', 'Something goes wrong while updating permission!!');
-
         }
     }
 

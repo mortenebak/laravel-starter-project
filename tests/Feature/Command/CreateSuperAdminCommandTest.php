@@ -32,7 +32,5 @@ class CreateSuperAdminCommandTest extends TestCase
 
         $user = User::first();
         expect($user->hasRole('Super Admin'))->toBeTrue();
-
     }
-
 }
