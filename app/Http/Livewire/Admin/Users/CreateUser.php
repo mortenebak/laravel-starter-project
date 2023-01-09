@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Users;
 
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -31,11 +32,13 @@ class CreateUser extends ModalComponent
         $this->validate();
 
         try {
-            User::query()->create([
+            $user = User::query()->create([
                 'name' => $this->name,
                 'email' => $this->email,
                 'password' => Hash::make($this->password),
             ]);
+
+            event(new Registered($user));
 
             session()->flash('success', 'User created Successfully!');
 
