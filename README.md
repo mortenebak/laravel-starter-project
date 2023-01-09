@@ -1,14 +1,16 @@
+# Laravel Starter Project
 
-## About this Laravel base project
+This repository contains my starting point when developing a new Laravel project.
+It comes with a basic user management, role management and permissions management and a dashboard.
 
-This repository contains my starting point when developing a new Laravel project. It includes the TALL stack from the preset at [Tallstack.dev](https://tallstack.dev):
+## It includes the TALL stack from the preset at Tallstack.dev:
 
 - [Tailwind CSS](https://tailwindcss.com)
 - [Alpine.js](https://alpinejs.dev)
 - [Laravel](https://laravel.com)
 - [Laravel Livewire](https://laravel-livewire.com)
 
-Further it includes:
+## Further it includes:
 
 - [Laravel Pint](https://github.com/laravel/pint) for code style fixes
 - [PestPHP](https://pestphp.com) for testing
@@ -16,12 +18,13 @@ Further it includes:
 - [Laravel Debugbar](https://github.com/barryvdh/laravel-debugbar) for debugging
 - [Laravel IDE helper](https://github.com/barryvdh/laravel-ide-helper) for IDE support
 - [Spatie Roles & Permissions](https://spatie.be/docs/laravel-permission/v5/introduction) for user roles and permissions
+- [Wire Elements / Modals](https://github.com/wire-elements/modal) for modals
 
-## Installation
 
+# Installation
 After cloning the repository, do the following:
 
-### 1. Install dependencies
+## 1. Install dependencies
 
 ```bash
 composer install
@@ -29,7 +32,7 @@ npm install
 npm run build # or npm run dev
 ```
 
-### 2. Configure environment
+## 2. Configure environment
 
 Setup your `.env` file and run the migrations.
 
@@ -40,20 +43,32 @@ php artisan storage:link
 php artisan migrate
 ```
 
-### 3. Migration
+## 3. Migration
 
 ```bash
 php artisan migrate
 ```
 
-### 4. Seeding
+## 4. Seeding
 
 ```bash
 php artisan db:seed
 ```
 
-### 5. Creating the first Super Admin user
+## 5. Creating the first Super Admin user
     
 ```bash
 php artisan app:create-super-admin
 ```
+
+# Contributing
+Feel free to contribute to this project by submitting a pull request.
+
+# Credits
+I'd like to thank all the people who have contributed to the packages used in this project. 
+Especially [Spatie](https://spatie.be) for their great packages, Livewire and Alpinejs for their awesome framework and the Laravel community for their great work.
+Furthermore, the [Tallstack.dev](https://tallstack.dev) team for their preset.
+And of course [Laravel](https://laravel.com) for their awesome framework.
+
+# Donate
+If you like this project, please consider donating to support it.
