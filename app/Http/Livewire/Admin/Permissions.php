@@ -54,9 +54,9 @@ class Permissions extends Component
     {
         try {
             Permission::find($id)->delete();
-            session()->flash('success', "User Deleted Successfully!!");
+            session()->flash('success', "Permission Deleted Successfully!");
         } catch (\Exception $e) {
-            session()->flash('error', "Something goes wrong while deleting User!!");
+            session()->flash('error', "Something goes wrong while deleting permission!");
         }
     }
 }
