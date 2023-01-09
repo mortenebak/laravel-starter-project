@@ -13,6 +13,7 @@ class Permissions extends Component
 
     protected $listeners = [
         'deletePermission' => 'destroy',
+        'permissionCreated' => '$refresh',
         'permissionUpdated' => '$refresh',
     ];
 
