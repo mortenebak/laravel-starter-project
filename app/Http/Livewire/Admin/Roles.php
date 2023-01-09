@@ -14,6 +14,7 @@ class Roles extends Component
     protected $listeners = [
         'deleteRole' => 'destroy',
         'roleUpdated' => '$refresh',
+        'roleCreated' => '$refresh',
     ];
 
     public int $perPage = 25;
@@ -47,5 +48,15 @@ class Roles extends Component
             'permissions' => Permission::all(),
         ])
             ->extends('layouts.admin');
+    }
+
+    public function destroy($id)
+    {
+        try {
+            Role::find($id)->delete();
+            session()->flash('success', "Role Deleted Successfully!");
+        } catch (\Exception $e) {
+            session()->flash('error', "Something goes wrong while deleting role!");
+        }
     }
 }
