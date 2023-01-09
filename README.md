@@ -19,11 +19,17 @@ Further it includes:
 
 ## Installation
 
+After cloning the repository, do the following:
+
+### 1. Install dependencies
+
 ```bash
 composer install
 npm install
 npm run build # or npm run dev
 ```
+
+### 2. Configure environment
 
 Setup your `.env` file and run the migrations.
 
@@ -34,8 +40,20 @@ php artisan storage:link
 php artisan migrate
 ```
 
-## Planned features
-* Users
-* Roles
-* Permissions
+### 3. Migration
 
+```bash
+php artisan migrate
+```
+
+### 4. Seeding
+
+```bash
+php artisan db:seed
+```
+
+### 5. Creating the first Super Admin user
+    
+```bash
+php artisan app:create-super-admin
+```
