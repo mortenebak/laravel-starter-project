@@ -33,17 +33,6 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'delete permissions']);
         Permission::create(['name' => 'create permissions']);
 
-
         $superAdmin = Role::findByName('Super Admin')->syncPermissions(Permission::all());
-        $admin = Role::findByName('Admin')->syncPermissions([
-            'access dashboard',
-            'view users',
-            'edit users',
-            'create users',
-        ]);
-
-        $superAdminUser = User::query()->find(1)->assignRole('Super Admin');
-        $superAdminUser = User::query()->find(1)->assignRole('Admin');
-        $adminUser = User::query()->find(2)->assignRole('Admin');
     }
 }
