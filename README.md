@@ -64,6 +64,13 @@ php artisan app:create-super-admin
 # Contributing
 Feel free to contribute to this project by submitting a pull request.
 
+# Todo
+- [ ] Option for user to change password
+- [ ] Option for user to change name and email address
+- [ ] Option for user to delete account
+- [ ] Add tests
+- [ ] Add more documentation
+
 # Credits
 I'd like to thank all the people who have contributed to the packages used in this project. 
 Especially [Spatie](https://spatie.be) for their great packages, Livewire and Alpinejs for their awesome framework and the Laravel community for their great work.
