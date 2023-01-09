@@ -14,6 +14,7 @@ class Users extends Component
     protected $listeners = [
         'deleteUser' => 'destroy',
         'userUpdated' => '$refresh',
+        'userCreated' => '$refresh',
     ];
 
     public int $perPage = 25;
