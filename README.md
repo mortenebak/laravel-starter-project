@@ -40,7 +40,6 @@ Setup your `.env` file and run the migrations.
 copy .env.example .env
 php artisan key:generate
 php artisan storage:link
-php artisan migrate
 ```
 
 ## 3. Migration
