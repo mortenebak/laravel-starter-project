@@ -13,7 +13,7 @@ class EditPermission extends ModalComponent
 
     // set validation rules
     protected $rules = [
-        'name' => 'required',
+        'name' => 'required|unique:permissions',
     ];
 
     public static function modalMaxWidth(): string
