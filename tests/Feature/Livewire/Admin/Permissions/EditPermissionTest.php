@@ -1,12 +1,11 @@
 <?php
 
+use Livewire\Livewire;
 use Spatie\Permission\Models\Permission;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
 
 test('a permission can be updated', function () {
-    // Arrange
-    $this->actingAs(adminUser());
 
     $permission = Permission::create([
         'name' => 'test permission'
@@ -33,8 +32,6 @@ test('a permission can be updated', function () {
 });
 
 test('it shows errors if no name is given', function () {
-    // Arrange
-    $this->actingAs(adminUser());
 
     $permission = Permission::create([
         'name' => 'test permission'
@@ -63,9 +60,6 @@ test('it shows errors if no name is given', function () {
 
 
 test('it shows errors if name is not unique', function () {
-
-    // Arrange
-    $this->actingAs(adminUser());
 
     $permission = Permission::create([
         'name' => 'test permission'

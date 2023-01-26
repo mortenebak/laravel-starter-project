@@ -1,6 +1,6 @@
 <div class="p-4 w-full dark:bg-gray-900 flex flex-col space-y-4">
 
-    <h2 class="text-2xl font-bold dark:text-white">Create permission</h2>
+    <h2 class="text-2xl font-bold dark:text-white">Create Role</h2>
 
     <div class="form-group">
         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
