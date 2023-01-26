@@ -37,7 +37,7 @@ npm run build # or npm run dev
 Setup your `.env` file and run the migrations.
 
 ```bash
-copy .env.example .env
+cp .env.example .env
 php artisan key:generate
 php artisan storage:link
 ```
@@ -64,11 +64,11 @@ php artisan app:create-super-admin
 Feel free to contribute to this project by submitting a pull request.
 
 # Todo
-- [ ] Option for user to change password
-- [ ] Option for user to change name and email address
-- [ ] Option for user to delete account
-- [ ] Add tests
-- [ ] Add more documentation
+1. [ ] Option for user to change password
+2. [ ] Option for user to change name and email address
+3. [ ] Option for user to delete account
+4. [ ] Add tests
+5. [ ] Add more documentation
 
 # Credits
 I'd like to thank all the people who have contributed to the packages used in this project. 
