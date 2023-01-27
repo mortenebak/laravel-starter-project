@@ -32,30 +32,3 @@ uses(Tests\TestCase::class)->in('Feature');
 expect()->extend('toBeOne', function () {
     return $this->toBe(1);
 });
-
-/*
-beforeEach(function () {
-    $this->user = User::factory()->create();
-    Role::create(['name' => 'Super Admin']);
-
-    Permission::create(['name' => 'access dashboard']);
-
-    Permission::create(['name' => 'view users']);
-    Permission::create(['name' => 'edit users']);
-    Permission::create(['name' => 'delete users']);
-    Permission::create(['name' => 'create users']);
-
-    Permission::create(['name' => 'view roles']);
-    Permission::create(['name' => 'edit roles']);
-    Permission::create(['name' => 'delete roles']);
-    Permission::create(['name' => 'create roles']);
-
-    Permission::create(['name' => 'view permissions']);
-    Permission::create(['name' => 'edit permissions']);
-    Permission::create(['name' => 'delete permissions']);
-    Permission::create(['name' => 'create permissions']);
-
-    Role::findByName('Super Admin')->syncPermissions(Permission::all());
-    $this->user->assignRole('Super Admin');
-});
-*/

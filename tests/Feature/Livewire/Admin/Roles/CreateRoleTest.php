@@ -7,30 +7,6 @@ use Spatie\Permission\Models\Role;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
 
-beforeEach(function () {
-    $this->user = User::factory()->create();
-    Role::create(['name' => 'Super Admin']);
-
-    Permission::create(['name' => 'access dashboard']);
-
-    Permission::create(['name' => 'view users']);
-    Permission::create(['name' => 'edit users']);
-    Permission::create(['name' => 'delete users']);
-    Permission::create(['name' => 'create users']);
-
-    Permission::create(['name' => 'view roles']);
-    Permission::create(['name' => 'edit roles']);
-    Permission::create(['name' => 'delete roles']);
-    Permission::create(['name' => 'create roles']);
-
-    Permission::create(['name' => 'view permissions']);
-    Permission::create(['name' => 'edit permissions']);
-    Permission::create(['name' => 'delete permissions']);
-    Permission::create(['name' => 'create permissions']);
-
-    Role::findByName('Super Admin')->syncPermissions(Permission::all());
-    $this->user->assignRole('Super Admin');
-});
 
 test('the livewire form can be viewed', function () {
 
@@ -62,3 +38,31 @@ test('a new role can be created', function () {
         'name' => 'test role'
     ]);
 });
+
+test('a role can have multiple permissions attached', function() {
+
+    // assert role does not exist
+    assertDatabaseMissing('roles', [
+        'name' => 'test role'
+    ]);
+
+    // create role
+    Livewire::test('admin.roles.create-role')
+        ->set('name', 'test role')
+        ->set('rolePermissions', ['view users', 'edit users', 'delete users', 'create users'])
+        ->call('create')
+        ->assertHasNoErrors();
+
+    // assert role exists
+    assertDatabaseHas('roles', [
+        'name' => 'test role'
+    ]);
+
+    // assert role has permissions
+    $role = Role::findByName('test role');
+    $this->assertTrue($role->hasPermissionTo('view users'));
+    $this->assertTrue($role->hasPermissionTo('edit users'));
+    $this->assertTrue($role->hasPermissionTo('delete users'));
+    $this->assertTrue($role->hasPermissionTo('create users'));
+});
+

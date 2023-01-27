@@ -17,7 +17,7 @@ class EditRole extends ModalComponent
 
     // set validation rules
     protected $rules = [
-        'name' => 'required',
+        'name' => 'required|unique:roles,name|max:255',
     ];
 
     public static function modalMaxWidth(): string
