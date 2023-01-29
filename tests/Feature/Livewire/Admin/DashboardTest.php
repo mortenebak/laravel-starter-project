@@ -17,10 +17,16 @@ test('a user with a role that only has access dashboard can access the admin das
     $role = Role::create(['name' => 'test role']);
     $user->assignRole($role);
     $role->givePermissionTo('access dashboard');
+    $role->givePermissionTo('view users');
+    $role->givePermissionTo('view roles');
+    $role->givePermissionTo('view permissions');
 
     $this->actingAs($user)
         ->get(route('admin.dashboard'))
-        ->assertOk();
+        ->assertOk()
+    ->assertSee('Users')
+    ->assertSee('Permissions')
+    ->assertSee('Roles');
 
 });
 
