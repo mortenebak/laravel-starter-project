@@ -1,6 +1,6 @@
 # Laravel Starter Project
 
-**Laravel 10 ready!**
+> Updated for Laravel 10.0
 
 This repository contains my starting point when developing a new Laravel project.
 It comes with a basic user management, role management and permissions management and a dashboard.
