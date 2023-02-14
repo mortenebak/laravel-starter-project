@@ -1,4 +1,7 @@
 # Laravel Starter Project
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+![GitHub last commit](https://img.shields.io/github/last-commit/mortenebak/laravel-starter-project)
+![GitHub Sponsors](https://img.shields.io/github/sponsors/mortenebak)
 
 > Updated for Laravel 10.0
 
