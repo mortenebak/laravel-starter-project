@@ -17,7 +17,10 @@ abstract class TestCase extends BaseTestCase
 
         $this->withoutVite();
 
-        $this->user = User::factory()->create();
+        $this->user = User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'admin@admin.com',
+        ]);
         Role::create(['name' => 'Super Admin']);
 
         Permission::create(['name' => 'access dashboard']);
