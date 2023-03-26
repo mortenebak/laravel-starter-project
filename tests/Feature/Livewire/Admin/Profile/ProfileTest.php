@@ -76,3 +76,26 @@ it('can not update the profile with an email that already exists', function () {
 
 });
 
+it('can logout the user if the email is changed', function () {
+
+    $this->assertDatabaseHas('users', [
+        'name' => 'Admin',
+        'email' => 'admin@admin.com',
+    ]);
+
+    Livewire::actingAs($this->user)
+        ->test(\App\Http\Livewire\Admin\Profile\EditProfile::class)
+        ->set('name', 'New Name')
+        ->set('email', 'new@admin.com')
+        ->call('updateProfile')
+        ->assertRedirect(route('login'));
+
+    $this->assertGuest();
+
+    $this->assertDatabaseHas('users', [
+        'name' => 'New Name',
+        'email' => 'new@admin.com',
+    ]);
+
+});
+

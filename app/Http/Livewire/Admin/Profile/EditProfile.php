@@ -23,10 +23,22 @@ class EditProfile extends Component
             'email' => 'required|email|unique:users,email,' . auth()->user()->id . ',id',
         ]);
 
+        $previousEmail = auth()->user()->email;
+        $newEmail = $this->email;
+
         auth()->user()->update([
             'name' => $this->name,
             'email' => $this->email,
         ]);
+
+        if($previousEmail !== $newEmail) {
+            // logout user
+            auth()->logout();
+            $this->redirect(route('login'));
+        } else {
+            session()->flash('success', 'Profile updated successfully.');
+        }
+
     }
 
 
