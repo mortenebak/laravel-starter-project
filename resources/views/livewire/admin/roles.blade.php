@@ -31,21 +31,21 @@
 
         <x-table wire:loading.class="opacity-50">
             <x-slot name="head">
-                <x-table.heading><a href="#" wire:click.prevent="sortBy('id')">{{__('ID') }}</a></x-table.heading>
+                <x-table.heading><a href="#" wire:click.prevent="sortBy('id')">{{ __('ID') }}</a></x-table.heading>
                 <x-table.heading><a href="#" wire:click.prevent="sortBy('name')">{{ __('Name') }}</a></x-table.heading>
                 <x-table.heading>{{ __('Permissions') }}</x-table.heading>
                 <x-table.heading class="text-right">{{ __('Actions') }}</x-table.heading>
             </x-slot>
 
             <x-slot name="body">
-                @foreach($roles as $key => $role)
+                @foreach ($roles as $key => $role)
                     <x-table.row>
                         <x-table.cell class="text-xs w-12 text-opacity-50">{{ $role->id }}</x-table.cell>
                         <x-table.cell class="flex-shrink-0 w-1/4">
                             {{ $role->name }}
                         </x-table.cell>
                         <x-table.cell>
-                            @foreach($role->permissions as $permission)
+                            @foreach ($role->permissions as $permission)
                                 <span class="inline-flex bg-blue-100 text-blue-800 text-xs font-medium mr-2 mb-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
                                     {{ $permission->name }}
                                 </span>
@@ -58,7 +58,7 @@
                             @endcan
 
                             @can('delete roles')
-                                <x-danger-button onclick="deleteRole({{$role->id}})">
+                                <x-danger-button onclick="deleteRole({{ $role->id }})">
                                     {{ __('Delete') }}
                                 </x-danger-button>
                             @endcan

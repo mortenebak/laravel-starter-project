@@ -2,11 +2,10 @@
 
 use Livewire\Livewire;
 use Spatie\Permission\Models\Role;
+
 use function Pest\Laravel\assertDatabaseHas;
 
-
 test('a new role can be update', function () {
-
     $role = Role::create(['name' => 'Test Role']);
 
     Livewire::actingAs($this->user)
@@ -22,7 +21,6 @@ test('a new role can be update', function () {
 });
 
 test('a name is required', function () {
-
     $role = Role::create(['name' => 'Test Role']);
 
     Livewire::actingAs($this->user)
@@ -33,7 +31,6 @@ test('a name is required', function () {
 });
 
 test('a name is unique', function () {
-
     $role = Role::create(['name' => 'Test Role']);
 
     Livewire::actingAs($this->user)

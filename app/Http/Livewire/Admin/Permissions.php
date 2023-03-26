@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
+use Exception;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Spatie\Permission\Models\Permission;
@@ -9,12 +10,6 @@ use Spatie\Permission\Models\Permission;
 class Permissions extends Component
 {
     use WithPagination;
-
-    protected $listeners = [
-        'deletePermission' => 'destroy',
-        'permissionCreated' => '$refresh',
-        'permissionUpdated' => '$refresh',
-    ];
 
     public int $perPage = 25;
 
@@ -25,6 +20,12 @@ class Permissions extends Component
     public string $search = '';
 
     public array $searchableFields = ['name'];
+
+    protected $listeners = [
+        'deletePermission' => 'destroy',
+        'permissionCreated' => '$refresh',
+        'permissionUpdated' => '$refresh',
+    ];
 
     public function updatingSearch(): void
     {
@@ -58,7 +59,7 @@ class Permissions extends Component
         try {
             Permission::find($id)->delete();
             session()->flash('success', 'Permission Deleted Successfully!');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             session()->flash('error', 'Something goes wrong while deleting permission!');
         }
     }

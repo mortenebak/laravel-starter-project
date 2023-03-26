@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Users;
 
 use App\Models\User;
+use Exception;
 use LivewireUI\Modal\ModalComponent;
 use Spatie\Permission\Models\Role;
 
@@ -57,7 +58,7 @@ class EditUser extends ModalComponent
             $this->emit('userUpdated');
 
             $this->closeModal();
-        } catch(\Exception $e) {
+        } catch(Exception $e) {
             session()->flash('error', 'Something goes wrong while updating user!!');
         }
     }

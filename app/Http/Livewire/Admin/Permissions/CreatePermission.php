@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Permissions;
 
+use Exception;
 use LivewireUI\Modal\ModalComponent;
 use Spatie\Permission\Models\Permission;
 
@@ -35,7 +36,7 @@ class CreatePermission extends ModalComponent
             $this->emit('permissionCreated');
 
             $this->closeModal();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             session()->flash('error', 'Something goes wrong while creating the permission!!');
         }
     }

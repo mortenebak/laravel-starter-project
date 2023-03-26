@@ -11,10 +11,6 @@
 |
 */
 
-use App\Models\User;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
-
 uses(Illuminate\Foundation\Testing\LazilyRefreshDatabase::class)->in('Feature');
 uses(Tests\TestCase::class)->in('Feature');
 

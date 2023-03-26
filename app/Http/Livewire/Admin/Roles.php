@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
+use Exception;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Spatie\Permission\Models\Permission;
@@ -10,12 +11,6 @@ use Spatie\Permission\Models\Role;
 class Roles extends Component
 {
     use WithPagination;
-
-    protected $listeners = [
-        'deleteRole' => 'destroy',
-        'roleUpdated' => '$refresh',
-        'roleCreated' => '$refresh',
-    ];
 
     public int $perPage = 25;
 
@@ -26,6 +21,12 @@ class Roles extends Component
     public string $search = '';
 
     public array $searchableFields = ['name'];
+
+    protected $listeners = [
+        'deleteRole' => 'destroy',
+        'roleUpdated' => '$refresh',
+        'roleCreated' => '$refresh',
+    ];
 
     public function updatingSearch(): void
     {
@@ -60,7 +61,7 @@ class Roles extends Component
         try {
             Role::find($id)->delete();
             session()->flash('success', 'Role Deleted Successfully!');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             session()->flash('error', 'Something goes wrong while deleting role!');
         }
     }

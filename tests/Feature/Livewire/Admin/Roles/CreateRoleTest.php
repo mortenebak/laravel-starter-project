@@ -1,15 +1,12 @@
 <?php
 
-use App\Models\User;
 use Livewire\Livewire;
-use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
 
-
 test('the livewire form can be viewed', function () {
-
     $this->actingAs($this->user);
 
     $this->get(route('admin.roles'))
@@ -22,10 +19,9 @@ test('the livewire form can be viewed', function () {
 });
 
 test('a new role can be created', function () {
-
     // assert role does not exist
     assertDatabaseMissing('roles', [
-        'name' => 'test role'
+        'name' => 'test role',
     ]);
 
     // create role
@@ -35,15 +31,14 @@ test('a new role can be created', function () {
 
     // assert role exists
     assertDatabaseHas('roles', [
-        'name' => 'test role'
+        'name' => 'test role',
     ]);
 });
 
-test('a role can have multiple permissions attached', function() {
-
+test('a role can have multiple permissions attached', function () {
     // assert role does not exist
     assertDatabaseMissing('roles', [
-        'name' => 'test role'
+        'name' => 'test role',
     ]);
 
     // create role
@@ -55,7 +50,7 @@ test('a role can have multiple permissions attached', function() {
 
     // assert role exists
     assertDatabaseHas('roles', [
-        'name' => 'test role'
+        'name' => 'test role',
     ]);
 
     // assert role has permissions
@@ -65,4 +60,3 @@ test('a role can have multiple permissions attached', function() {
     $this->assertTrue($role->hasPermissionTo('delete users'));
     $this->assertTrue($role->hasPermissionTo('create users'));
 });
-

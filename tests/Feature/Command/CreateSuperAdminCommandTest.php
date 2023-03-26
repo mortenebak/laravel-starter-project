@@ -11,7 +11,10 @@ class CreateSuperAdminCommandTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testCreateSuperAdmin()
+    /**
+     * @test
+     */
+    public function createSuperAdmin()
     {
 //        Role::create(['name' => 'Super Admin']);
 
@@ -21,7 +24,6 @@ class CreateSuperAdminCommandTest extends TestCase
             ->expectsQuestion('What is the users password?', 'password')
             ->expectsConfirmation('Is this user a super admin?', 'yes')
             ->expectsOutput('User created successfully');
-
 
         $this->assertDatabaseHas('users', [
             'name' => 'Test User',

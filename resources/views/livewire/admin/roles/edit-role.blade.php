@@ -13,7 +13,7 @@
     <div class="form-group">
         <label for="" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Permissions</label>
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-            @foreach($permissions as $permission)
+            @foreach ($permissions as $permission)
                 <div class="flex items-center">
                     <input type="checkbox" wire:model="rolePermissions" value="{{ $permission->id }}"
                            class="form-checkbox h-5 w-5 text-blue-600">

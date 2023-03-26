@@ -42,6 +42,5 @@ abstract class TestCase extends BaseTestCase
 
         Role::findByName('Super Admin')->syncPermissions(Permission::all());
         $this->user->assignRole('Super Admin');
-
     }
 }

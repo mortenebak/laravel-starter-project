@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Auth\Passwords;
 
 use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
@@ -75,6 +74,11 @@ class Reset extends Component
         return Password::broker();
     }
 
+    public function render()
+    {
+        return view('livewire.auth.passwords.reset')->extends('layouts.auth');
+    }
+
     /**
      * Get the guard to be used during password reset.
      *
@@ -82,11 +86,6 @@ class Reset extends Component
      */
     protected function guard()
     {
-        return Auth::guard();
-    }
-
-    public function render()
-    {
-        return view('livewire.auth.passwords.reset')->extends('layouts.auth');
+        return auth()->guard();
     }
 }

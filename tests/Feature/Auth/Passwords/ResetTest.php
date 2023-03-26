@@ -5,7 +5,6 @@ namespace Tests\Feature\Auth\Passwords;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -59,7 +58,7 @@ class ResetTest extends TestCase
             ->set('passwordConfirmation', 'new-password')
             ->call('resetPassword');
 
-        $this->assertTrue(Auth::attempt([
+        $this->assertTrue(auth()->attempt([
             'email' => $user->email,
             'password' => 'new-password',
         ]));

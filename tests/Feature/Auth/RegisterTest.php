@@ -5,7 +5,6 @@ namespace Tests\Feature\Auth;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Event;
 use Livewire\Livewire;
 use Tests\TestCase;
@@ -47,7 +46,7 @@ class RegisterTest extends TestCase
             ->assertRedirect(route('home'));
 
         $this->assertTrue(User::whereEmail('tallstack@example.com')->exists());
-        $this->assertEquals('tallstack@example.com', Auth::user()->email);
+        $this->assertEquals('tallstack@example.com', auth()->user()->email);
 
         Event::assertDispatched(Registered::class);
     }

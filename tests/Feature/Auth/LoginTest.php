@@ -4,7 +4,6 @@ namespace Tests\Feature\Auth;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Livewire;
 use Tests\TestCase;
@@ -102,6 +101,6 @@ class LoginTest extends TestCase
             ->call('authenticate')
             ->assertHasErrors('email');
 
-        $this->assertFalse(Auth::check());
+        $this->assertFalse(auth()->check());
     }
 }

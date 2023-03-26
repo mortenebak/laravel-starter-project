@@ -29,13 +29,13 @@
 
         <x-table wire:loading.class="opacity-50">
             <x-slot name="head">
-                <x-table.heading><a href="#" wire:click.prevent="sortBy('id')">{{__('ID') }}</a></x-table.heading>
+                <x-table.heading><a href="#" wire:click.prevent="sortBy('id')">{{ __('ID') }}</a></x-table.heading>
                 <x-table.heading><a href="#" wire:click.prevent="sortBy('name')">{{ __('Name') }}</a></x-table.heading>
                 <x-table.heading class="text-right">{{ __('Actions') }}</x-table.heading>
             </x-slot>
 
             <x-slot name="body">
-                @foreach($permissions as $key => $permission)
+                @foreach ($permissions as $key => $permission)
                     <x-table.row>
                         <x-table.cell class="text-xs w-12 text-opacity-50">{{ $permission->id }}</x-table.cell>
                         <x-table.cell class="flex-shrink-0 w-1/4">
@@ -48,7 +48,7 @@
                             @endcan
 
                             @can('delete permissions')
-                                <x-danger-button onclick="deletePermission({{$permission->id}})">
+                                <x-danger-button onclick="deletePermission({{ $permission->id }})">
                                     {{ __('Delete') }}
                                 </x-danger-button>
                             @endcan

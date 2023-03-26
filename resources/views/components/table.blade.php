@@ -3,12 +3,12 @@
 
         <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                {{$head}}
+                {{ $head }}
             </tr>
         </thead>
 
         <tbody class="">
-            {{$body}}
+            {{ $body }}
         </tbody>
     </table>
 </div>

@@ -2,17 +2,17 @@
 
 use Livewire\Livewire;
 use Spatie\Permission\Models\Permission;
+
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
 
 test('a permission can be updated', function () {
-
     $permission = Permission::create([
-        'name' => 'test permission'
+        'name' => 'test permission',
     ]);
     // Assert
     assertDatabaseHas('permissions', [
-        'name' => 'test permission'
+        'name' => 'test permission',
     ]);
 
     // Act
@@ -23,22 +23,20 @@ test('a permission can be updated', function () {
 
     // Assert
     assertDatabaseMissing('permissions', [
-        'name' => 'test permission'
+        'name' => 'test permission',
     ]);
     assertDatabaseHas('permissions', [
-        'name' => 'test permission 2'
+        'name' => 'test permission 2',
     ]);
-
 });
 
 test('it shows errors if no name is given', function () {
-
     $permission = Permission::create([
-        'name' => 'test permission'
+        'name' => 'test permission',
     ]);
     // Assert
     assertDatabaseHas('permissions', [
-        'name' => 'test permission'
+        'name' => 'test permission',
     ]);
 
     // Act
@@ -50,29 +48,26 @@ test('it shows errors if no name is given', function () {
 
     // Assert
     assertDatabaseHas('permissions', [
-        'name' => 'test permission'
+        'name' => 'test permission',
     ]);
     assertDatabaseMissing('permissions', [
-        'name' => 'test permission 2'
+        'name' => 'test permission 2',
     ]);
-
 });
 
-
 test('it shows errors if name is not unique', function () {
-
     $permission = Permission::create([
-        'name' => 'test permission'
+        'name' => 'test permission',
     ]);
     $permission2 = Permission::create([
-        'name' => 'test permission 2'
+        'name' => 'test permission 2',
     ]);
     // Assert
     assertDatabaseHas('permissions', [
-        'name' => 'test permission'
+        'name' => 'test permission',
     ]);
     assertDatabaseHas('permissions', [
-        'name' => 'test permission 2'
+        'name' => 'test permission 2',
     ]);
 
     // Act
@@ -84,10 +79,9 @@ test('it shows errors if name is not unique', function () {
 
     // Assert
     assertDatabaseHas('permissions', [
-        'name' => 'test permission'
+        'name' => 'test permission',
     ]);
     assertDatabaseHas('permissions', [
-        'name' => 'test permission 2'
+        'name' => 'test permission 2',
     ]);
-
 });

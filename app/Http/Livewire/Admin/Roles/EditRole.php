@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Roles;
 
 use App\Models\User;
+use Exception;
 use LivewireUI\Modal\ModalComponent;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -54,7 +55,7 @@ class EditRole extends ModalComponent
             $this->emit('roleUpdated');
 
             $this->closeModal();
-        } catch(\Exception $e) {
+        } catch(Exception $e) {
             session()->flash('error', 'Something goes wrong while updating role!!');
         }
     }

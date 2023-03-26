@@ -6,7 +6,6 @@ use Livewire\Component;
 
 class EditProfile extends Component
 {
-
     public $name;
     public $email;
 
@@ -31,16 +30,14 @@ class EditProfile extends Component
             'email' => $this->email,
         ]);
 
-        if($previousEmail !== $newEmail) {
+        if ($previousEmail !== $newEmail) {
             // logout user
             auth()->logout();
             $this->redirect(route('login'));
         } else {
             session()->flash('success', 'Profile updated successfully.');
         }
-
     }
-
 
     public function render()
     {

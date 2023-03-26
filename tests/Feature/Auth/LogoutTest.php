@@ -4,7 +4,6 @@ namespace Tests\Feature\Auth;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 
 class LogoutTest extends TestCase
@@ -20,7 +19,7 @@ class LogoutTest extends TestCase
         $this->post(route('logout'))
             ->assertRedirect(route('home'));
 
-        $this->assertFalse(Auth::check());
+        $this->assertFalse(auth()->check());
     }
 
     /** @test */
@@ -29,6 +28,6 @@ class LogoutTest extends TestCase
         $this->post(route('logout'))
             ->assertRedirect(route('login'));
 
-        $this->assertFalse(Auth::check());
+        $this->assertFalse(auth()->check());
     }
 }

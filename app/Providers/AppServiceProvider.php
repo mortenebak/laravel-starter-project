@@ -39,12 +39,12 @@ class AppServiceProvider extends ServiceProvider
         Builder::macro('search', function ($field, $string) {
             if (is_array($field)) {
                 foreach ($field as $item) {
-                    $this->orWhere($item, 'like', '%'.$string.'%');
+                    $this->orWhere($item, 'like', '%' . $string . '%');
                 }
 
                 return $this;
             } else {
-                return $string ? $this->where($field, 'like', '%'.$string.'%') : $this;
+                return $string ? $this->where($field, 'like', '%' . $string . '%') : $this;
             }
         });
     }

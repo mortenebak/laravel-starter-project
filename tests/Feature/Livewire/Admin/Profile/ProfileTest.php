@@ -10,7 +10,6 @@ it('can render the edit profile page', function () {
 });
 
 it('can update the profile', function () {
-
     $this->assertDatabaseHas('users', [
         'name' => 'Admin',
         'email' => 'admin@admin.com',
@@ -32,11 +31,9 @@ it('can update the profile', function () {
         'name' => 'Admin',
         'email' => 'admin@admin.com',
     ]);
-
 });
 
 it('can not update the profile with invalid data', function () {
-
     $this->assertDatabaseHas('users', [
         'name' => 'Admin',
         'email' => 'admin@admin.com',
@@ -53,11 +50,9 @@ it('can not update the profile with invalid data', function () {
         'name' => 'Admin',
         'email' => 'admin@admin.com',
     ]);
-
 });
 
 it('can not update the profile with an email that already exists', function () {
-
     $newUser = User::factory()->create([
         'email' => 'test@admin.com',
     ]);
@@ -73,11 +68,9 @@ it('can not update the profile with an email that already exists', function () {
         ->set('email', 'test@admin.com')
         ->call('updateProfile')
         ->assertHasErrors(['email']);
-
 });
 
 it('can logout the user if the email is changed', function () {
-
     $this->assertDatabaseHas('users', [
         'name' => 'Admin',
         'email' => 'admin@admin.com',
@@ -96,6 +89,4 @@ it('can logout the user if the email is changed', function () {
         'name' => 'New Name',
         'email' => 'new@admin.com',
     ]);
-
 });
-

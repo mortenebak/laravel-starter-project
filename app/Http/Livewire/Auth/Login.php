@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Auth;
 
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Login extends Component
@@ -25,7 +24,7 @@ class Login extends Component
     {
         $this->validate();
 
-        if (! Auth::attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
+        if (! auth()->attempt(['email' => $this->email, 'password' => $this->password], $this->remember)) {
             $this->addError('email', trans('auth.failed'));
 
             return;

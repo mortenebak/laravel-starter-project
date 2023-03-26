@@ -22,7 +22,7 @@
                 <select wire:model="roleType"
                         class="rounded border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option value="">All roles</option>
-                    @foreach($roles as $role)
+                    @foreach ($roles as $role)
                         <option value="{{ $role->name }}">{{ $role->name }}</option>
                     @endforeach
                 </select>
@@ -39,7 +39,7 @@
 
         <x-table wire:loading.class="opacity-50">
             <x-slot name="head">
-                <x-table.heading><a href="#" wire:click.prevent="sortBy('id')">{{__('ID') }}</a></x-table.heading>
+                <x-table.heading><a href="#" wire:click.prevent="sortBy('id')">{{ __('ID') }}</a></x-table.heading>
                 <x-table.heading><a href="#" wire:click.prevent="sortBy('name')">{{ __('Name') }}</a></x-table.heading>
                 <x-table.heading><a href="#" wire:click.prevent="sortBy('email')">{{ __('E-mail') }}</a>
                 </x-table.heading>
@@ -48,7 +48,7 @@
             </x-slot>
 
             <x-slot name="body">
-                @foreach($users as $key => $user)
+                @foreach ($users as $key => $user)
                     <x-table.row>
                         <x-table.cell class="text-xs w-12 text-opacity-50">{{ $user->id }}</x-table.cell>
                         <x-table.cell class="flex-shrink-0 w-1/4">
@@ -58,7 +58,7 @@
                             {{ $user->email }}
                         </x-table.cell>
                         <x-table.cell class="flex-1">
-                            @foreach($user->roles as $role)
+                            @foreach ($user->roles as $role)
                                 <p class="inline-flex bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
                                     {{ $role->name }}
                                 </p>
@@ -76,7 +76,7 @@
                             @endcan
 
                             @can('delete users')
-                                <x-danger-button onclick="deleteUser({{$user->id}})">
+                                <x-danger-button onclick="deleteUser({{ $user->id }})">
                                     {{ __('Delete') }}
                                 </x-danger-button>
                             @endcan

@@ -22,7 +22,7 @@
         <div class="form-group">
             <label for="userRoles" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Roles</label>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-                @foreach($roles as $role)
+                @foreach ($roles as $role)
                     <div class="flex items-center">
                         <input type="checkbox" wire:model="userRoles" value="{{ $role->id }}"
                                class="form-checkbox h-5 w-5 text-blue-600">

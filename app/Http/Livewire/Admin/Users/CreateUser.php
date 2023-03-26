@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Users;
 
 use App\Models\User;
+use Exception;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Hash;
@@ -47,7 +48,7 @@ class CreateUser extends ModalComponent
             $this->emit('userCreated');
 
             $this->closeModal();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             session()->flash('error', 'Something goes wrong while creating the user!');
         }
     }

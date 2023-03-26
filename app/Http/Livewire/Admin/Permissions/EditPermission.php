@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Permissions;
 
+use Exception;
 use LivewireUI\Modal\ModalComponent;
 use Spatie\Permission\Models\Permission;
 
@@ -42,7 +43,7 @@ class EditPermission extends ModalComponent
             $this->emit('permissionUpdated');
 
             $this->closeModal();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             session()->flash('error', 'Something goes wrong while updating permission!!');
         }
     }
