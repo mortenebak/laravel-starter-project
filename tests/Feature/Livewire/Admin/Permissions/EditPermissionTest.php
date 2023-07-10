@@ -17,7 +17,7 @@ test('a permission can be updated', function () {
 
     // Act
     Livewire::test('admin.permissions.edit-permission', ['permission' => $permission->id])
-            ->assertSee('Edit permission')
+            ->assertSee('Update Permission')
             ->set('name', 'test permission 2')
             ->call('update');
 
@@ -41,7 +41,7 @@ test('it shows errors if no name is given', function () {
 
     // Act
     Livewire::test('admin.permissions.edit-permission', ['permission' => $permission->id])
-            ->assertSee('Edit permission')
+            ->assertSee('Update Permission')
             ->set('name', '')
             ->call('update')
             ->assertHasErrors(['name' => 'required']);
@@ -72,7 +72,7 @@ test('it shows errors if name is not unique', function () {
 
     // Act
     Livewire::test('admin.permissions.edit-permission', ['permission' => $permission->id])
-            ->assertSee('Edit permission')
+            ->assertSee('Update Permission')
             ->set('name', 'test permission 2')
             ->call('update')
             ->assertHasErrors(['name' => 'unique']);

@@ -8,7 +8,7 @@ use function Pest\Laravel\assertDatabaseMissing;
 
 test('the livewire can be displayed', function () {
     Livewire::test('admin.permissions.create-permission')
-            ->assertSee('Create permission');
+            ->assertSee('Create Permission');
 });
 
 test('a new permission can be created', function () {
@@ -19,7 +19,7 @@ test('a new permission can be created', function () {
 
     // Act
     Livewire::test('admin.permissions.create-permission')
-            ->assertSee('Create permission')
+            ->assertSee('Create Permission')
             ->set('name', 'test permission')
             ->call('create');
 
@@ -32,7 +32,7 @@ test('a new permission can be created', function () {
 test('the name field is required', function () {
     // Act
     Livewire::test('admin.permissions.create-permission')
-            ->assertSee('Create permission')
+            ->assertSee('Create Permission')
             ->set('name', '')
             ->call('create')
             ->assertHasErrors(['name' => 'required']);
@@ -43,7 +43,7 @@ test('the name field is unique', function () {
 
     // Act
     Livewire::test('admin.permissions.create-permission')
-            ->assertSee('Create permission')
+            ->assertSee('Create Permission')
             ->set('name', 'test permission')
             ->call('create')
             ->assertHasErrors(['name' => 'unique']);

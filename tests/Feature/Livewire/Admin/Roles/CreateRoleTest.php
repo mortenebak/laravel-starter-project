@@ -11,7 +11,7 @@ test('the livewire form can be viewed', function () {
 
     $this->get(route('admin.roles'))
         ->assertStatus(200)
-        ->assertSee('Add new role');
+        ->assertSee('Create Role');
 
     // assert livewire component is rendered
     Livewire::test('admin.roles.create-role')
