@@ -4,17 +4,18 @@ namespace App\Http\Livewire\Admin\Users;
 
 use App\Models\User;
 use Exception;
+use Illuminate\View\View;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use LivewireUI\Modal\ModalComponent;
 use Spatie\Permission\Models\Role;
 
 class EditUser extends ModalComponent
 {
+    use LivewireAlert;
+
     public $user;
-
     public string $name = '';
-
     public string $email = '';
-
     public array $userRoles = [];
 
     // set validation rules
@@ -28,7 +29,7 @@ class EditUser extends ModalComponent
         return '5xl';
     }
 
-    public function mount($user)
+    public function mount($user): void
     {
         $this->user = User::find($user);
         $this->name = $this->user->name;
@@ -38,7 +39,7 @@ class EditUser extends ModalComponent
         $this->userRoles = $this->user->roles->pluck('id')->toArray() ?? [];
     }
 
-    public function update()
+    public function update(): void
     {
         // Validate request
         $this->validate();
@@ -52,18 +53,18 @@ class EditUser extends ModalComponent
             // Update roles
             $this->user->syncRoles($this->userRoles);
 
-            session()->flash('success', 'User Updated Successfully!!');
+            $this->alert('success', 'User Updated Successfully!');
 
             // emit event to refresh users table
             $this->emit('userUpdated');
 
             $this->closeModal();
         } catch(Exception $e) {
-            session()->flash('error', 'Something goes wrong while updating user!!');
+            $this->alert('error', 'Something went wrong!');
         }
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.admin.users.edit-user', [
             'user' => $this->user,

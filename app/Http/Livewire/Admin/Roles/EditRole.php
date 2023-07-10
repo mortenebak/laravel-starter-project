@@ -2,18 +2,19 @@
 
 namespace App\Http\Livewire\Admin\Roles;
 
-use App\Models\User;
 use Exception;
+use Illuminate\View\View;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use LivewireUI\Modal\ModalComponent;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class EditRole extends ModalComponent
 {
+    use LivewireAlert;
+
     public $role;
-
     public string $name = '';
-
     public array $rolePermissions = [];
 
     // set validation rules
@@ -26,7 +27,7 @@ class EditRole extends ModalComponent
         return '5xl';
     }
 
-    public function mount($role)
+    public function mount($role): void
     {
         $this->role = Role::find($role);
         $this->name = $this->role->name;
@@ -35,7 +36,7 @@ class EditRole extends ModalComponent
         $this->rolePermissions = $this->role->permissions->pluck('id')->toArray() ?? [];
     }
 
-    public function update()
+    public function update(): void
     {
         // Validate request
         $this->validate();
@@ -49,18 +50,18 @@ class EditRole extends ModalComponent
             // Update roles
             $this->role->syncPermissions($this->rolePermissions);
 
-            session()->flash('success', 'Role Updated Successfully!!');
+            $this->alert('success', 'Role updated successfully!');
 
             // emit event to refresh users table
             $this->emit('roleUpdated');
 
             $this->closeModal();
-        } catch(Exception $e) {
-            session()->flash('error', 'Something goes wrong while updating role!!');
+        } catch (Exception $e) {
+            $this->alert('error', 'Something went wrong!');
         }
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.admin.roles.edit-role', [
             'role' => $this->role,

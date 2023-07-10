@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Admin;
 
 use Exception;
+use Illuminate\View\View;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Spatie\Permission\Models\Permission;
@@ -10,6 +12,7 @@ use Spatie\Permission\Models\Role;
 
 class Roles extends Component
 {
+    use LivewireAlert;
     use WithPagination;
 
     public int $perPage = 25;
@@ -33,7 +36,7 @@ class Roles extends Component
         $this->gotoPage(1);
     }
 
-    public function sortBy($field)
+    public function sortBy($field): void
     {
         if ($this->sortField === $field) {
             $this->sortAsc = ! $this->sortAsc;
@@ -44,7 +47,7 @@ class Roles extends Component
         $this->sortField = $field;
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.admin.roles', [
             'roles' => Role::query()->search($this->searchableFields, $this->search)
@@ -56,13 +59,13 @@ class Roles extends Component
             ->extends('layouts.admin');
     }
 
-    public function destroy($id)
+    public function destroy($id): void
     {
         try {
             Role::find($id)->delete();
-            session()->flash('success', 'Role Deleted Successfully!');
+            $this->alert('success', 'Role deleted successfully!');
         } catch (Exception $e) {
-            session()->flash('error', 'Something goes wrong while deleting role!');
+            $this->alert('error', 'Something went wrong!');
         }
     }
 }

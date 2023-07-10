@@ -3,14 +3,17 @@
 namespace App\Http\Livewire\Admin\Roles;
 
 use Exception;
+use Illuminate\View\View;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use LivewireUI\Modal\ModalComponent;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class CreateRole extends ModalComponent
 {
-    public string $name = '';
+    use LivewireAlert;
 
+    public string $name = '';
     public array $rolePermissions = [];
 
     // set validation rules
@@ -23,7 +26,7 @@ class CreateRole extends ModalComponent
         return '5xl';
     }
 
-    public function create()
+    public function create(): void
     {
         // Validate request
         $this->validate();
@@ -35,23 +38,23 @@ class CreateRole extends ModalComponent
 
             $role->syncPermissions($this->rolePermissions);
 
-            session()->flash('success', 'Role created Successfully!');
+            $this->alert('success', 'Role Created Successfully!');
 
             // emit event to refresh permissions table
             $this->emit('roleCreated');
 
             $this->closeModal();
         } catch (Exception $e) {
-            session()->flash('error', 'Something goes wrong while creating the permission!!');
+            $this->alert('error', 'Something went wrong!');
         }
     }
 
-    public function cancel()
+    public function cancel(): void
     {
         $this->closeModal();
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.admin.roles.create-role', [
             'permissions' => Permission::all(),

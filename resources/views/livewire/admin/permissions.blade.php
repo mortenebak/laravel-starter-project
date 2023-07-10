@@ -1,13 +1,13 @@
 <div>
     <div class="flex justify-between items-center mb-5 h-10">
         <h1 class="text-3xl font-bold  dark:text-slate-200">
-            Permissions
+            {{ __('Permissions') }}
         </h1>
         <div>
             @can('create permissions')
                 <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                         wire:click='$emit("openModal", "admin.permissions.create-permission")'>
-                    Add new permission
+                    {{ __('Create Permission') }}
                 </button>
             @endcan
         </div>
@@ -17,7 +17,7 @@
         <div class="flex items-center justify-between">
             <input type="text"
                    class="w-1/4 rounded border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                   wire:model="search" placeholder="Type in and search...">
+                   wire:model="search" placeholder="{{ __('Type in and search...') }}">
 
             <select wire:model="perPage"
                     class="rounded border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -65,7 +65,7 @@
         @can('delete permissions')
             <script>
                 function deletePermission(id) {
-                    if (confirm("Are you sure to delete this permission?"))
+                    if (confirm("{{ __('Are you sure you want to delete this permission?') }}"))
                         window.livewire.emit('deletePermission', id);
                 }
             </script>

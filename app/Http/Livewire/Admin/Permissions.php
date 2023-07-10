@@ -3,12 +3,15 @@
 namespace App\Http\Livewire\Admin;
 
 use Exception;
+use Illuminate\View\View;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Spatie\Permission\Models\Permission;
 
 class Permissions extends Component
 {
+    use LivewireAlert;
     use WithPagination;
 
     public int $perPage = 25;
@@ -32,7 +35,7 @@ class Permissions extends Component
         $this->gotoPage(1);
     }
 
-    public function sortBy($field)
+    public function sortBy($field): void
     {
         if ($this->sortField === $field) {
             $this->sortAsc = ! $this->sortAsc;
@@ -43,7 +46,7 @@ class Permissions extends Component
         $this->sortField = $field;
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.admin.permissions', [
             'permissions' => Permission::query()->search($this->searchableFields, $this->search)
@@ -54,13 +57,13 @@ class Permissions extends Component
             ->extends('layouts.admin');
     }
 
-    public function destroy($id)
+    public function destroy($id): void
     {
         try {
             Permission::find($id)->delete();
-            session()->flash('success', 'Permission Deleted Successfully!');
+            $this->alert('success', 'Permission deleted successfully!');
         } catch (Exception $e) {
-            session()->flash('error', 'Something goes wrong while deleting permission!');
+            $this->alert('error', 'Something went wrong!');
         }
     }
 }

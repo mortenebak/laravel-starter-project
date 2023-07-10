@@ -2,20 +2,24 @@
 
 namespace App\Http\Livewire\Admin\Profile;
 
+use Illuminate\View\View;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 
 class EditProfile extends Component
 {
+    use LivewireAlert;
+
     public $name;
     public $email;
 
-    public function mount()
+    public function mount(): void
     {
         $this->name = auth()->user()->name;
         $this->email = auth()->user()->email;
     }
 
-    public function updateProfile()
+    public function updateProfile(): void
     {
         $this->validate([
             'name' => 'required',
@@ -35,11 +39,11 @@ class EditProfile extends Component
             auth()->logout();
             $this->redirect(route('login'));
         } else {
-            session()->flash('success', 'Profile updated successfully.');
+            $this->alert('success', 'Profile updated successfully!');
         }
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.admin.profile.edit-profile')->extends('layouts.admin');
     }

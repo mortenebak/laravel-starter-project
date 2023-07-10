@@ -8,14 +8,15 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use LivewireUI\Modal\ModalComponent;
 
 class CreateUser extends ModalComponent
 {
+    use LivewireAlert;
+
     public $name;
-
     public $email;
-
     public $password = '';
 
     protected $rules = [
@@ -24,12 +25,12 @@ class CreateUser extends ModalComponent
         'password' => 'required|string|min:8',
     ];
 
-    public function mount()
+    public function mount(): void
     {
         $this->password = Str::random(16);
     }
 
-    public function create()
+    public function create(): void
     {
         $this->validate();
 
@@ -42,14 +43,14 @@ class CreateUser extends ModalComponent
 
             event(new Registered($user));
 
-            session()->flash('success', 'User created Successfully!');
+            $this->alert('success', 'User added successfully!');
 
             // emit event to refresh users table
             $this->emit('userCreated');
 
             $this->closeModal();
         } catch (Exception $e) {
-            session()->flash('error', 'Something goes wrong while creating the user!');
+            $this->alert('error', 'Something went wrong!');
         }
     }
 

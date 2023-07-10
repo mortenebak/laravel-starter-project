@@ -4,12 +4,15 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\User;
 use Exception;
+use Illuminate\View\View;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Spatie\Permission\Models\Role;
 
 class Users extends Component
 {
+    use LivewireAlert;
     use WithPagination;
 
     public int $perPage = 25;
@@ -35,7 +38,7 @@ class Users extends Component
         $this->gotoPage(1);
     }
 
-    public function sortBy($field)
+    public function sortBy($field): void
     {
         if ($this->sortField === $field) {
             $this->sortAsc = ! $this->sortAsc;
@@ -46,7 +49,7 @@ class Users extends Component
         $this->sortField = $field;
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.admin.users', [
             'users' => User::query()->search($this->searchableFields, $this->search)
@@ -59,13 +62,13 @@ class Users extends Component
             ->extends('layouts.admin');
     }
 
-    public function destroy($id)
+    public function destroy($id): void
     {
         try {
             User::find($id)->delete();
-            session()->flash('success', 'User Deleted Successfully!!');
+            $this->alert('success', 'User deleted successfully!');
         } catch (Exception $e) {
-            session()->flash('error', 'Something goes wrong while deleting User!!');
+            $this->alert('error', 'Something went wrong!');
         }
     }
 }

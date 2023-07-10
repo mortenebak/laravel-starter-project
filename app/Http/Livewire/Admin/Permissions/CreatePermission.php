@@ -3,11 +3,15 @@
 namespace App\Http\Livewire\Admin\Permissions;
 
 use Exception;
+use Illuminate\View\View;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use LivewireUI\Modal\ModalComponent;
 use Spatie\Permission\Models\Permission;
 
 class CreatePermission extends ModalComponent
 {
+    use LivewireAlert;
+
     public string $name = '';
 
     // set validation rules
@@ -20,7 +24,7 @@ class CreatePermission extends ModalComponent
         return '5xl';
     }
 
-    public function create()
+    public function create(): void
     {
         // Validate request
         $this->validate();
@@ -30,23 +34,23 @@ class CreatePermission extends ModalComponent
                 'name' => $this->name,
             ]);
 
-            session()->flash('success', 'Permission created Successfully!');
+            $this->alert('success', 'Permission created successfully!');
 
             // emit event to refresh permissions table
             $this->emit('permissionCreated');
 
             $this->closeModal();
         } catch (Exception $e) {
-            session()->flash('error', 'Something goes wrong while creating the permission!!');
+            $this->alert('error', 'Something went wrong!');
         }
     }
 
-    public function cancel()
+    public function cancel(): void
     {
         $this->closeModal();
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.admin.permissions.create-permission');
     }
