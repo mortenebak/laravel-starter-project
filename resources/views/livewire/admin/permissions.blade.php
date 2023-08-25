@@ -5,8 +5,9 @@
         </h1>
         <div>
             @can('create permissions')
-                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                        wire:click='$emit("openModal", "admin.permissions.create-permission")'>
+                <button
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                    wire:click="$dispatch('openModal', {component: 'admin.permissions.create-permission'})">
                     {{ __('Create Permission') }}
                 </button>
             @endcan
@@ -17,9 +18,9 @@
         <div class="flex items-center justify-between">
             <input type="text"
                    class="w-1/4 rounded border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                   wire:model="search" placeholder="{{ __('Type in and search...') }}">
+                   wire:model.live="search" placeholder="{{ __('Type in and search...') }}">
 
-            <select wire:model="perPage"
+            <select wire:model.live="perPage"
                     class="rounded border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option value="10">{{ __('10 per page') }}</option>
                 <option value="25">{{ __('25 per page') }}</option>
@@ -44,7 +45,8 @@
                         <x-table.cell class="flex items-center space-x-2 justify-end">
                             @can('edit permissions')
                                 <button class="btn btn-secondary"
-                                        wire:click='$emit("openModal", "admin.permissions.edit-permission", {{ json_encode(["permission" => $permission->id]) }})'>{{ __('Edit') }}</button>
+                                        wire:click="$dispatch('openModal', {component: 'admin.permissions.edit-permission', arguments: {permission: {{ $permission->id }}}})"
+                                >{{ __('Edit') }}</button>
                             @endcan
 
                             @can('delete permissions')
@@ -65,8 +67,9 @@
         @can('delete permissions')
             <script>
                 function deletePermission(id) {
-                    if (confirm("{{ __('Are you sure you want to delete this permission?') }}"))
-                        window.livewire.emit('deletePermission', id);
+                    if (confirm("{{ __('Are you sure you want to delete this permission?') }}")) {
+                        Livewire.dispatch('deletePermission', {id: id});
+                    }
                 }
             </script>
         @endcan

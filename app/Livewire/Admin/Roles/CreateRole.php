@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Roles;
+namespace App\Livewire\Admin\Roles;
 
 use Exception;
 use Illuminate\View\View;
@@ -41,7 +41,7 @@ class CreateRole extends ModalComponent
             $this->alert('success', 'Role Created Successfully!');
 
             // emit event to refresh permissions table
-            $this->emit('roleCreated');
+            $this->dispatch('roleCreated');
 
             $this->closeModal();
         } catch (Exception $e) {

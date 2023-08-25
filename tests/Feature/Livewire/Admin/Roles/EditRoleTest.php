@@ -13,7 +13,7 @@ test('a new role can be update', function () {
         ->set('name', 'Test Role Updated')
         ->call('update')
         ->assertHasNoErrors()
-        ->assertEmitted('roleUpdated');
+        ->assertDispatched('roleUpdated');
 
     assertDatabaseHas('roles', [
         'name' => 'Test Role Updated',

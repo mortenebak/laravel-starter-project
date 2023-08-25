@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Auth\Passwords;
+namespace App\Livewire\Auth\Passwords;
 
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Hash;

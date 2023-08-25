@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Profile;
+namespace App\Livewire\Admin\Profile;
 
 use Illuminate\View\View;
 use Jantinnerezo\LivewireAlert\LivewireAlert;

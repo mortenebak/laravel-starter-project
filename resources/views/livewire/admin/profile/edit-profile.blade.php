@@ -5,16 +5,16 @@
         </h1>
     </div>
     <div>
-        <form wire:submit.prevent="updateProfile">
+        <form wire:submit="updateProfile">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="flex flex-col">
                     <label for="name" class="text-gray-700 dark:text-gray-200">Name</label>
-                    <input type="text" name="name" id="name" wire:model="name" class="border border-gray-300 p-2 rounded mt-2 focus:outline-none focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600">
+                    <input type="text" name="name" id="name" wire:model.live="name" class="border border-gray-300 p-2 rounded mt-2 focus:outline-none focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600">
                     @error('name') <span class="text-red-500">{{ $message }}</span> @enderror
                 </div>
                 <div class="flex flex-col">
                     <label for="email" class="text-gray-700 dark:text-gray-200">Email</label>
-                    <input type="email" name="email" id="email" wire:model="email" class="border border-gray-300 p-2 rounded mt-2 focus:outline-none focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600">
+                    <input type="email" name="email" id="email" wire:model.live="email" class="border border-gray-300 p-2 rounded mt-2 focus:outline-none focus:border-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600">
                     @error('email') <span class="text-red-500">{{ $message }}</span> @enderror
                 </div>
             </div>

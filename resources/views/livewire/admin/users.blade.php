@@ -5,8 +5,9 @@
         </h1>
         <div>
             @can('create users')
-                <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                        wire:click='$emit("openModal", "admin.users.create-user")'>
+                <button
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                    wire:click="$dispatch('openModal', {component: 'admin.users.create-user'})">
                     {{ __('Create User') }}
                 </button>
             @endcan
@@ -17,9 +18,9 @@
         <div class="flex items-center justify-between">
             <input type="text"
                    class="w-1/4 rounded border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                   wire:model="search" placeholder="{{ __('Type in and search...') }}">
+                   wire:model.live="search" placeholder="{{ __('Type in and search...') }}">
             <div class="flex space-x-4">
-                <select wire:model="roleType"
+                <select wire:model.live="roleType"
                         class="rounded border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option value="">{{ __('All roles') }}</option>
                     @foreach ($roles as $role)
@@ -27,7 +28,7 @@
                     @endforeach
                 </select>
 
-                <select wire:model="perPage"
+                <select wire:model.live="perPage"
                         class="rounded border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option value="10">{{ __('10 per page') }}</option>
                     <option value="25">{{ __('25 per page') }}</option>
@@ -72,7 +73,8 @@
                             @endcan
                             @can('edit users')
                                 <button class="btn btn-secondary"
-                                        wire:click='$emit("openModal", "admin.users.edit-user", {{ json_encode(["user" => $user->id]) }})'>{{ __('Edit') }}</button>
+                                        wire:click="$dispatch('openModal', {component: 'admin.users.edit-user', arguments: { user: {{ $user->id }} }})">
+                                    {{ __('Edit') }}</button>
                             @endcan
 
                             @can('delete users')
@@ -93,8 +95,9 @@
         @can('delete users')
             <script>
                 function deleteUser(id) {
-                    if (confirm("{{ __('Are you sure you want to delete this user?') }}"))
-                        window.livewire.emit('deleteUser', id);
+                    if (confirm("{{ __('Are you sure you want to delete this user?') }}")) {
+                        Livewire.dispatch('deleteUser', {id: id});
+                    }
                 }
             </script>
         @endcan

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Roles;
+namespace App\Livewire\Admin\Roles;
 
 use Exception;
 use Illuminate\View\View;
@@ -53,7 +53,7 @@ class EditRole extends ModalComponent
             $this->alert('success', 'Role updated successfully!');
 
             // emit event to refresh users table
-            $this->emit('roleUpdated');
+            $this->dispatch('roleUpdated');
 
             $this->closeModal();
         } catch (Exception $e) {

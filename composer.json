@@ -7,14 +7,14 @@
     "require": {
         "php": "^8.1",
         "guzzlehttp/guzzle": "^7.5",
-        "jantinnerezo/livewire-alert": "^2.2",
+        "jantinnerezo/livewire-alert": "^3.0",
         "laravel/framework": "^10.4.1",
         "laravel/pint": "^1.7",
         "laravel/sanctum": "^3.2.1",
         "laravel/tinker": "^2.8.1",
-        "livewire/livewire": "^2.12.3",
+        "livewire/livewire": "^3.0",
         "spatie/laravel-permission": "^5.10",
-        "wire-elements/modal": "^1.0.7"
+        "wire-elements/modal": "^2.0.0-beta"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.8.1",

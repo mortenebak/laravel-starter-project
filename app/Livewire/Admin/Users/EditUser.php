@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Users;
+namespace App\Livewire\Admin\Users;
 
 use App\Models\User;
 use Exception;
@@ -56,7 +56,7 @@ class EditUser extends ModalComponent
             $this->alert('success', 'User Updated Successfully!');
 
             // emit event to refresh users table
-            $this->emit('userUpdated');
+            $this->dispatch('userUpdated');
 
             $this->closeModal();
         } catch(Exception $e) {

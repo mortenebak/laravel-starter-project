@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Permissions;
+namespace App\Livewire\Admin\Permissions;
 
 use Exception;
 use Illuminate\View\View;
@@ -37,7 +37,7 @@ class CreatePermission extends ModalComponent
             $this->alert('success', 'Permission created successfully!');
 
             // emit event to refresh permissions table
-            $this->emit('permissionCreated');
+            $this->dispatch('permissionCreated');
 
             $this->closeModal();
         } catch (Exception $e) {

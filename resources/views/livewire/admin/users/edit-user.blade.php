@@ -4,7 +4,7 @@
 
     <div class="form-group">
         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-        <input id="name" wire:model="name" type="text"
+        <input id="name" wire:model.live="name" type="text"
                class="@error('name') is-invalid @enderror bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                placeholder="Enter name" required>
         @error('name') <span class="text-danger">{{ $message }}</span>@enderror
@@ -12,7 +12,7 @@
 
     <div class="form-group">
         <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">E-mail</label>
-        <input id="email" wire:model="email" type="text"
+        <input id="email" wire:model.live="email" type="text"
                class="@error('email') is-invalid @enderror bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                placeholder="Enter email" required>
         @error('email') <span class="text-danger">{{ $message }}</span>@enderror
@@ -24,7 +24,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
                 @foreach ($roles as $role)
                     <div class="flex items-center">
-                        <input type="checkbox" wire:model="userRoles" value="{{ $role->id }}"
+                        <input type="checkbox" wire:model.live="userRoles" value="{{ $role->id }}"
                                class="form-checkbox h-5 w-5 text-blue-600">
                         <label class="ml-2 text-gray-700 dark:text-white">{{ $role->name }}</label>
                     </div>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Permissions;
+namespace App\Livewire\Admin\Permissions;
 
 use Exception;
 use Illuminate\View\View;
@@ -42,7 +42,7 @@ class EditPermission extends ModalComponent
             $this->alert('success', 'Permission updated successfully!');
 
             // emit event to refresh permissions table
-            $this->emit('permissionUpdated');
+            $this->dispatch('permissionUpdated');
 
             $this->closeModal();
         } catch (Exception $e) {

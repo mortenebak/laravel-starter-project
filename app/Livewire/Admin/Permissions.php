@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Livewire\Admin;
 
-use App\Models\User;
 use Exception;
 use Illuminate\View\View;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
-class Users extends Component
+class Permissions extends Component
 {
     use LivewireAlert;
     use WithPagination;
@@ -23,14 +22,12 @@ class Users extends Component
 
     public string $search = '';
 
-    public string $roleType = '';
-
-    public array $searchableFields = ['name', 'email'];
+    public array $searchableFields = ['name'];
 
     protected $listeners = [
-        'deleteUser' => 'destroy',
-        'userUpdated' => '$refresh',
-        'userCreated' => '$refresh',
+        'deletePermission' => 'destroy',
+        'permissionCreated' => '$refresh',
+        'permissionUpdated' => '$refresh',
     ];
 
     public function updatingSearch(): void
@@ -51,13 +48,11 @@ class Users extends Component
 
     public function render(): View
     {
-        return view('livewire.admin.users', [
-            'users' => User::query()->search($this->searchableFields, $this->search)
+        return view('livewire.admin.permissions', [
+            'permissions' => Permission::query()->search($this->searchableFields, $this->search)
                 ->with('roles')
-                ->when($this->sortField, fn ($query) => $query->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc'))
-                ->when($this->roleType, fn ($query) => $query->role($this->roleType))
+                ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                 ->paginate($this->perPage),
-            'roles' => Role::all(),
         ])
             ->extends('layouts.admin');
     }
@@ -65,8 +60,8 @@ class Users extends Component
     public function destroy($id): void
     {
         try {
-            User::find($id)->delete();
-            $this->alert('success', 'User deleted successfully!');
+            Permission::find($id)->delete();
+            $this->alert('success', 'Permission deleted successfully!');
         } catch (Exception $e) {
             $this->alert('error', 'Something went wrong!');
         }
