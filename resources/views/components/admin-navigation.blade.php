@@ -2,7 +2,7 @@
 
     @can('access dashboard')
         <li class="mb-0.5 ">
-            <a aria-current="page" class="flex p-2 rounded dark:hover:bg-gray-700  transition duration-300 ease-in-out" href="{{ route('admin.dashboard') }}">
+            <a wire:navigate aria-current="page" class="flex p-2 rounded dark:hover:bg-gray-700 " href="{{ route('admin.dashboard') }}">
                 <div class="flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="dark:text-gray-400 w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -17,8 +17,8 @@
     @endcan
 
     @can('view users')
-        <li class="" x-data="{expanded : $persist(false)}">
-            <a class="cursor-pointer flex p-2 rounded dark:hover:bg-gray-700 transition duration-300 ease-in-out" @click="expanded = !expanded">
+        <li x-data="{expanded : $persist(false).as('menu.view-users')}">
+            <a class="cursor-pointer flex p-2 rounded dark:hover:bg-gray-700" @click="expanded = !expanded">
                 <div class="flex w-full items-center justify-between">
                     <div class="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="dark:text-gray-400 w-6 h-6">
@@ -40,7 +40,7 @@
             <div x-show="expanded" x-collapse="">
                 <ul class="pl-8 mt-1">
                     <li class="mb-1 last:mb-0">
-                        <a class="px-3 py-[2px] block text-text dark:text-slate-200 rounded transition duration-300 ease-in-out truncate hover:bg-emerald-300-dark flex rounded dark:hover:bg-gray-700" href="{{ route('admin.users') }}">
+                        <a wire:navigate.hover class="px-3 py-[2px] block text-text dark:text-slate-200 rounded truncate hover:bg-emerald-300-dark flex rounded dark:hover:bg-gray-700" href="{{ route('admin.users') }}">
                             <div class="text-sm duration-200">
                                 {{ __('Users') }}
                             </div>
@@ -48,7 +48,7 @@
                     </li>
                     @can('view roles')
                         <li class="mb-1 last:mb-0">
-                            <a class="px-3 py-[2px] block text-text dark:text-slate-200 rounded transition duration-300 ease-in-out truncate hover:bg-emerald-300-dark flex rounded dark:hover:bg-gray-700" href="{{ route('admin.roles') }}">
+                            <a wire:navigate.hover class="px-3 py-[2px] block text-text dark:text-slate-200 rounded truncate hover:bg-emerald-300-dark flex rounded dark:hover:bg-gray-700" href="{{ route('admin.roles') }}">
                                 <div class="text-sm duration-200">
                                     {{ __('Roles') }}
                                 </div>
@@ -57,7 +57,7 @@
                     @endcan
                     @can('view permissions')
                         <li class="mb-1 last:mb-0">
-                            <a class="px-3 py-[2px] block text-text dark:text-slate-200 rounded transition duration-300 ease-in-out truncate hover:bg-emerald-300-dark flex2 rounded dark:hover:bg-gray-700" href="{{ route('admin.permissions') }}">
+                            <a wire:navigate.hover class="px-3 py-[2px] block text-text dark:text-slate-200 rounded truncate hover:bg-emerald-300-dark flex2 rounded dark:hover:bg-gray-700" href="{{ route('admin.permissions') }}">
                                 <div class="text-sm duration-200">
                                     {{ __('Permissions') }}
                                 </div>

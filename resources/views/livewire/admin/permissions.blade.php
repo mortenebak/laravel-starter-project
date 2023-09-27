@@ -6,7 +6,7 @@
         <div>
             @can('create permissions')
                 <button
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                    class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
                     wire:click="$dispatch('openModal', {component: 'admin.permissions.create-permission'})">
                     {{ __('Create Permission') }}
                 </button>
@@ -17,11 +17,11 @@
     <div class="flex flex-col space-y-4">
         <div class="flex items-center justify-between">
             <input type="text"
-                   class="w-1/4 rounded border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                   class="w-1/4 rounded border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                    wire:model.live="search" placeholder="{{ __('Type in and search...') }}">
 
             <select wire:model.live="perPage"
-                    class="rounded border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    class="rounded border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                 <option value="10">{{ __('10 per page') }}</option>
                 <option value="25">{{ __('25 per page') }}</option>
                 <option value="50">{{ __('50 per page') }}</option>
