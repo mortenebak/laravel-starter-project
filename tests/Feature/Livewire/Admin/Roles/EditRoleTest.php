@@ -1,5 +1,7 @@
 <?php
 
+use App\Livewire\Admin\Roles\EditRole;
+use App\Models\User;
 use Livewire\Livewire;
 use Spatie\Permission\Models\Role;
 
@@ -38,4 +40,24 @@ test('a name is unique', function () {
         ->set('name', 'Super Admin')
         ->call('update')
         ->assertHasErrors(['name' => 'unique']);
+});
+
+it('is required to have permission to edit a role', function() {
+
+    $role = Role::create(['name' => 'Test Role']);
+
+    Livewire::test(EditRole::class, ['role' => $role->id])
+        ->assertForbidden();
+
+    $user = User::factory()->create();
+
+    Livewire::actingAs($user)
+        ->test(EditRole::class, ['role' => $role->id])
+        ->assertForbidden();
+
+    $user->givePermissionTo('edit roles');
+
+    Livewire::actingAs($user)
+        ->test(EditRole::class, ['role' => $role->id])
+        ->assertOk();
 });

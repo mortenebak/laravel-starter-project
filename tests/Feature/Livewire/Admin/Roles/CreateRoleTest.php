@@ -1,8 +1,9 @@
 <?php
 
+use App\Livewire\Admin\Roles\CreateRole;
+use App\Models\User;
 use Livewire\Livewire;
 use Spatie\Permission\Models\Role;
-
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
 
@@ -25,7 +26,11 @@ test('a new role can be created', function () {
     ]);
 
     // create role
-    Livewire::test('admin.roles.create-role')
+    $user = User::factory()->create();
+    $user->givePermissionTo('create roles');
+
+    Livewire::actingAs($user)
+        ->test('admin.roles.create-role')
         ->set('name', 'test role')
         ->call('create');
 
@@ -42,7 +47,11 @@ test('a role can have multiple permissions attached', function () {
     ]);
 
     // create role
-    Livewire::test('admin.roles.create-role')
+    $user = User::factory()->create();
+    $user->givePermissionTo('create roles');
+
+    Livewire::actingAs($user)
+        ->test('admin.roles.create-role')
         ->set('name', 'test role')
         ->set('rolePermissions', ['view users', 'edit users', 'delete users', 'create users'])
         ->call('create')
@@ -59,4 +68,24 @@ test('a role can have multiple permissions attached', function () {
     $this->assertTrue($role->hasPermissionTo('edit users'));
     $this->assertTrue($role->hasPermissionTo('delete users'));
     $this->assertTrue($role->hasPermissionTo('create users'));
+});
+
+it('is required to have the right permissions to create a role', function () {
+
+    Livewire::test(CreateRole::class)
+        ->assertForbidden();
+
+    $user = User::factory()->create();
+
+    Livewire::actingAs($user)
+        ->test(CreateRole::class)
+        ->assertForbidden();
+
+    $user->givePermissionTo('create roles');
+
+    Livewire::actingAs($user)
+        ->test(CreateRole::class)
+        ->assertOk()
+        ->assertSee('Create Role');
+
 });

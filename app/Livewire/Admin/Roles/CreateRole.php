@@ -21,6 +21,12 @@ class CreateRole extends ModalComponent
         'name' => 'required|max:255|unique:roles,name',
     ];
 
+    public function mount()
+    {
+        abort_if(!auth()->check(), 403);
+        abort_if(!auth()->user()->hasPermissionTo('create roles'), 403);
+    }
+
     public static function modalMaxWidth(): string
     {
         return '5xl';
