@@ -11,8 +11,6 @@ test('super admin can access dashboard', function () {
 });
 
 test('a user with a role that has access dashboard can access the admin dashboard', function () {
-
-
     Livewire::test(\App\Livewire\Admin\Dashboard::class)
         ->assertForbidden();
 
