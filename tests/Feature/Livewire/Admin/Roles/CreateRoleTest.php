@@ -4,6 +4,7 @@ use App\Livewire\Admin\Roles\CreateRole;
 use App\Models\User;
 use Livewire\Livewire;
 use Spatie\Permission\Models\Role;
+
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
 
@@ -71,7 +72,6 @@ test('a role can have multiple permissions attached', function () {
 });
 
 it('is required to have the right permissions to create a role', function () {
-
     Livewire::test(CreateRole::class)
         ->assertForbidden();
 
@@ -87,5 +87,4 @@ it('is required to have the right permissions to create a role', function () {
         ->test(CreateRole::class)
         ->assertOk()
         ->assertSee('Create Role');
-
 });

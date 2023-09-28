@@ -42,8 +42,7 @@ test('a name is unique', function () {
         ->assertHasErrors(['name' => 'unique']);
 });
 
-it('is required to have permission to edit a role', function() {
-
+it('is required to have permission to edit a role', function () {
     $role = Role::create(['name' => 'Test Role']);
 
     Livewire::test(EditRole::class, ['role' => $role->id])
