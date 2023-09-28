@@ -3,6 +3,7 @@
 use App\Models\User;
 use Livewire\Livewire;
 use Spatie\Permission\Models\Permission;
+
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
 
@@ -99,7 +100,6 @@ test('it shows errors if name is not unique', function () {
 });
 
 test('it is required to the the right permission to edit a permission', function () {
-
     $permission = Permission::create([
         'name' => 'test permission',
     ]);

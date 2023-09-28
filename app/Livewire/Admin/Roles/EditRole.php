@@ -29,8 +29,8 @@ class EditRole extends ModalComponent
 
     public function mount($role): void
     {
-        abort_if(!auth()->check(), 403);
-        abort_if(!auth()->user()->hasPermissionTo('edit roles'), 403);
+        abort_if(! auth()->check(), 403);
+        abort_if(! auth()->user()->hasPermissionTo('edit roles'), 403);
 
         $this->role = Role::find($role);
         $this->name = $this->role->name;

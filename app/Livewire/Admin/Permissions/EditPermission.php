@@ -23,8 +23,8 @@ class EditPermission extends ModalComponent
 
     public function mount($permission): void
     {
-        abort_if(!auth()->check(), 403);
-        abort_if(!auth()->user()->hasPermissionTo('edit permissions'), 403);
+        abort_if(! auth()->check(), 403);
+        abort_if(! auth()->user()->hasPermissionTo('edit permissions'), 403);
 
         $this->permission = Permission::find($permission);
         $this->name = $this->permission->name;

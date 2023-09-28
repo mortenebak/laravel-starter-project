@@ -19,15 +19,15 @@ class CreatePermission extends ModalComponent
         'name' => 'required|max:255|unique:permissions,name',
     ];
 
-    public function mount()
-    {
-        abort_if(!auth()->check(), 403);
-        abort_if(!auth()->user()->hasPermissionTo('create permissions'), 403);
-    }
-
     public static function modalMaxWidth(): string
     {
         return '5xl';
+    }
+
+    public function mount()
+    {
+        abort_if(! auth()->check(), 403);
+        abort_if(! auth()->user()->hasPermissionTo('create permissions'), 403);
     }
 
     public function create(): void

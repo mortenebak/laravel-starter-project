@@ -4,11 +4,11 @@ use App\Livewire\Admin\Permissions\CreatePermission;
 use App\Models\User;
 use Livewire\Livewire;
 use Spatie\Permission\Models\Permission;
+
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
 
 test('the livewire can be displayed', function () {
-
     $user = User::factory()->create();
     $user->givePermissionTo('create permissions');
 
@@ -68,7 +68,6 @@ test('the name field is unique', function () {
 });
 
 test('it is required to the the correct permission to access the component', function () {
-
     Livewire::test(CreatePermission::class)
         ->assertForbidden();
 
