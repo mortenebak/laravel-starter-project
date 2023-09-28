@@ -78,7 +78,8 @@ Feel free to contribute to this project by submitting a pull request.
 6. [x] Add tests for the role management
 7. [x] Add tests for the permission management
 8. [x] Add tests for the dashboard
-9. [ ] Add more documentation
+9. [ ] Add concept of Impersonation
+10. [ ] Add more documentation
 
 # Credits
 I'd like to thank all the people who have contributed to the packages used in this project. 
