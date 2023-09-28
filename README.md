@@ -24,6 +24,7 @@ It comes with a basic user management, role management and permissions managemen
 - [Laravel IDE helper](https://github.com/barryvdh/laravel-ide-helper) for IDE support
 - [Spatie Roles & Permissions](https://spatie.be/docs/laravel-permission/v5/introduction) for user roles and permissions
 - [Wire Elements / Modals](https://github.com/wire-elements/modal) for modals
+- [LivewireAlerts](https://github.com/jantinnerezo/livewire-alert) for SweetAlerts
 
 
 # Installation
