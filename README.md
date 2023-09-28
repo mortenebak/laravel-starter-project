@@ -72,11 +72,11 @@ Feel free to contribute to this project by submitting a pull request.
 1. [ ] Option for user to change password
 2. [ ] Option for user to change name and email address
 3. [ ] Option for user to delete account
-4. [ ] Add tests
+4. [x] Add tests
 5. [x] Add tests for the user management
 6. [x] Add tests for the role management
 7. [x] Add tests for the permission management
-8. [ ] Add tests for the dashboard
+8. [x] Add tests for the dashboard
 9. [ ] Add more documentation
 
 # Credits
