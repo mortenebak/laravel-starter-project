@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Auth\Passwords\ChangePassword;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,4 +21,5 @@ Route::prefix('admin')->as('admin.')->middleware(['auth', 'can:access dashboard'
     Route::get('roles', \App\Livewire\Admin\Roles::class)->name('roles')->middleware('can:view roles');
     Route::get('permissions', \App\Livewire\Admin\Permissions::class)->name('permissions')->middleware('can:view permissions');
     Route::get('profile', \App\Livewire\Admin\Profile\EditProfile::class)->name('profile.edit');
+    Route::get('change-password', ChangePassword::class)->name('change-password');
 });

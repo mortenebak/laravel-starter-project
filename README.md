@@ -70,7 +70,7 @@ php artisan app:create-super-admin
 Feel free to contribute to this project by submitting a pull request.
 
 # Todo
-1. [ ] Option for user to change password
+1. [x] Option for user to change password
 2. [x] Option for user to change name and email address
 3. [ ] Option for user to delete account
 4. [x] Add tests

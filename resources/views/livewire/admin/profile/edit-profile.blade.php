@@ -1,7 +1,7 @@
 <div>
     <div class="flex justify-between items-center mb-5 h-10">
         <h1 class="text-3xl font-bold dark:text-gray-200">
-            Edit your account
+            Edit Your Account
         </h1>
     </div>
     <div>
@@ -20,22 +20,10 @@
             </div>
             <div class="flex justify-end mt-4 items-center space-x-4">
                 <button type="submit"
-                        class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                        class="text-white bg-primary-700 hover:bg-primary-800 focus:rng-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                     Update Profile
                 </button>
             </div>
         </form>
-    </div>
-    <div class="mt-40">
-
-        <div class="flex p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">
-            <div>
-               <h2 class="text-xl font-bold">Danger zone</h2>
-                <p>
-                    Deleting your account will delete all your data and you will not be able to recover it.
-                </p>
-            </div>
-        </div>
-
     </div>
 </div>
