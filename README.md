@@ -71,7 +71,7 @@ Feel free to contribute to this project by submitting a pull request.
 
 # Todo
 1. [ ] Option for user to change password
-2. [ ] Option for user to change name and email address
+2. [x] Option for user to change name and email address
 3. [ ] Option for user to delete account
 4. [x] Add tests
 5. [x] Add tests for the user management

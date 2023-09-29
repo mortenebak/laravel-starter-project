@@ -17,11 +17,6 @@ class EditRole extends ModalComponent
     public string $name = '';
     public array $rolePermissions = [];
 
-    // set validation rules
-    protected $rules = [
-        'name' => 'required|unique:roles,name|max:255',
-    ];
-
     public static function modalMaxWidth(): string
     {
         return '5xl';
@@ -42,7 +37,9 @@ class EditRole extends ModalComponent
     public function update(): void
     {
         // Validate request
-        $this->validate();
+        $this->validate([
+            'name' => 'required|max:255|unique:roles,name,' . $this->role->id,
+        ]);
 
         try {
             // Update category
