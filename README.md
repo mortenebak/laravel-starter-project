@@ -13,7 +13,8 @@ It comes with a basic user management, role management and permissions managemen
 - [Tailwind CSS](https://tailwindcss.com)
 - [Alpine.js](https://alpinejs.dev)
 - [Laravel](https://laravel.com)
-- [Laravel Livewire](https://laravel-livewire.com)
+- [Laravel Livewire](https://livewire.laravel.com)
+
 
 ## Further it includes:
 
@@ -25,6 +26,7 @@ It comes with a basic user management, role management and permissions managemen
 - [Spatie Roles & Permissions](https://spatie.be/docs/laravel-permission/v5/introduction) for user roles and permissions
 - [Wire Elements / Modals](https://github.com/wire-elements/modal) for modals
 - [LivewireAlerts](https://github.com/jantinnerezo/livewire-alert) for SweetAlerts
+- [Laravel Cashier](https://laravel.com/docs/10.x/billing) for Stripe integration
 
 
 # Installation
@@ -70,16 +72,12 @@ php artisan app:create-super-admin
 Feel free to contribute to this project by submitting a pull request.
 
 # Todo
-1. [x] Option for user to change password
-2. [x] Option for user to change name and email address
-3. [ ] Option for user to delete account
-4. [x] Add tests
-5. [x] Add tests for the user management
-6. [x] Add tests for the role management
-7. [x] Add tests for the permission management
-8. [x] Add tests for the dashboard
-9. [ ] Add concept of Impersonation
-10. [ ] Add more documentation
+- [ ] Add Admin Crud for Stripe Plans
+- [ ] Add Default Subscriber Role when a user subscribes
+- [ ] Remove Default Subscriber Role when a user unsubscribes
+- [ ] Option for user to delete account
+- [ ] Add concept of Impersonation
+- [ ] Add more documentation
 
 # Credits
 I'd like to thank all the people who have contributed to the packages used in this project. 
