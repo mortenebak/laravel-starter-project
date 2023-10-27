@@ -22,9 +22,22 @@
             <div class="space-x-4">
                 @if (Route::has('login'))
                     @auth
+                        @if(!auth()->user()->subscribed())
+                            <a wire:navigate.hover href="{{ route('subscriptions.plans') }}"
+                               class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-primary-600 border border-primary-700 rounded-md shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
+                                {{ __('Upgrade') }}
+                            </a>
+                        @endif
+                        <a wire:navigate.hover href="{{ route('account.subscriptions') }}"
+                           class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-gray-600 whitespace-no-wrap bg-white border border-gray-200 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:shadow-none">
+                            {{ __('My Account') }}
+                        </a>
+                        @can('access dashboard')
                         <a href="{{ route('admin.dashboard') }}"
-                           class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-gray-600 whitespace-no-wrap bg-white border border-gray-200 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:shadow-none">Dashboard</a>
-
+                           class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-gray-600 whitespace-no-wrap bg-white border border-gray-200 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:shadow-none">
+                            {{ __('Admin') }}
+                        </a>
+                        @endcan
                         <a
                             href="{{ route('logout') }}"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
@@ -53,5 +66,5 @@
     </div>
 </section>
 
-<section class="bg-gray-200 py-10">
+<section class="bg-gray-200 py-10 flex-1">
     <main class="container mx-auto max-w-7xl">
