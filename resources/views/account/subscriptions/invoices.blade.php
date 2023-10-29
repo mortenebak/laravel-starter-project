@@ -11,7 +11,7 @@
             <p>
                 You can download your invoices here.
             </p>
-            @forelse($invoices as $invoice)
+            @forelse ($invoices as $invoice)
                 <div class="flex justify-between">
                     <div>{{ $invoice->date()->toFormattedDateString() }}</div>
                     <div>{{ $invoice->total() }}</div>

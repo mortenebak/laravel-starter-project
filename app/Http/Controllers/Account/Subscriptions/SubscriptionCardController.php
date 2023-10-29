@@ -17,12 +17,12 @@ class SubscriptionCardController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-            $this->validate($request, [
-                'token' => 'required',
-            ]);
+        request()->validate($request, [
+            'token' => 'required',
+        ]);
 
-            $request->user()->updateDefaultPaymentMethod($request->token);
+        $request->user()->updateDefaultPaymentMethod($request->token);
 
-            return redirect()->route('account.subscriptions');
+        return redirect()->route('account.subscriptions');
     }
 }

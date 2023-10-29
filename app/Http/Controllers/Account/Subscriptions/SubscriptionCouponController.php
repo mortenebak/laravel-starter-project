@@ -15,15 +15,15 @@ class SubscriptionCouponController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-           'coupon' => [
-               'required',
-               new ValidCoupon()
-           ]
+        request()->validate($request, [
+            'coupon' => [
+                'required',
+                new ValidCoupon,
+            ],
         ]);
 
         $request->user()->subscription()->updateStripeSubscription([
-            'coupon' => $request->coupon
+            'coupon' => $request->coupon,
         ]);
 
         return redirect()->route('account.subscriptions');

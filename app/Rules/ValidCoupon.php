@@ -9,8 +9,8 @@ use Stripe\Exception\InvalidRequestException;
 
 class ValidCoupon implements Rule
 {
-
     protected $message;
+
     /**
      * Create a new rule instance.
      *
@@ -33,12 +33,14 @@ class ValidCoupon implements Rule
         try {
             $coupon = StripeCoupon::retrieve($value, Cashier::stripeOptions());
 
-            if(!$coupon->valid) {
-                $this->message = "Coupon is invalid!";
+            if (! $coupon->valid) {
+                $this->message = 'Coupon is invalid!';
+
                 return false;
             }
         } catch(InvalidRequestException $e) {
             $this->message = 'The coupon does not exists.';
+
             return false;
         }
 

@@ -12,7 +12,7 @@ class SubscriptionPolicy
 
     public function cancel(User $user, Subscription $subscription)
     {
-        return !$subscription->canceled();
+        return ! $subscription->canceled();
     }
 
     public function resume(User $user, Subscription $subscription)

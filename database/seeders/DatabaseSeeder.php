@@ -29,12 +29,12 @@ class DatabaseSeeder extends Seeder
         Plan::query()->create([
             'title' => 'Pro - 39 DKK / måned',
             'slug' => 'pro-monthly',
-            'stripe_id' => 'price_1M9oZfKePSHD5WYkw7y8wq1R'
+            'stripe_id' => 'price_1M9oZfKePSHD5WYkw7y8wq1R',
         ]);
         Plan::query()->create([
             'title' => 'Pro - 399 DKK / år',
             'slug' => 'pro-yearly',
-            'stripe_id' => 'price_1M9oZfKePSHD5WYk4ZM245Hv'
+            'stripe_id' => 'price_1M9oZfKePSHD5WYk4ZM245Hv',
         ]);
     }
 }

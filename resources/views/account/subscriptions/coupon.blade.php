@@ -19,7 +19,7 @@
                     <x-label for="coupon">{{ __('Coupon') }}</x-label>
                     <x-input id="coupon" name="coupon" type="text" :value="old('coupon')" autofocus
                              placeholder="{{ __('Coupon') }}"/>
-                    @if($errors->first('coupon'))
+                    @if ($errors->first('coupon'))
                         <p class="text-red-500 text-xs italic mt-4">{{ $errors->first('coupon') }}</p>
                     @endif
                 </div>

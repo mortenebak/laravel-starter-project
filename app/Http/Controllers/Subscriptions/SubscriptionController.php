@@ -24,13 +24,13 @@ class SubscriptionController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'token'  => 'required',
+        request()->validate($request, [
+            'token' => 'required',
             'coupon' => [
                 'nullable',
-                new ValidCoupon(),
+                new ValidCoupon,
             ],
-            'plan'   => 'required|exists:plans,slug',
+            'plan' => 'required|exists:plans,slug',
         ]);
 
         $plan = Plan::query()->where('slug', $request->get('plan', 'pro-monthly'))
@@ -40,11 +40,10 @@ class SubscriptionController extends Controller
             $request->user()->newSubscription('default', $plan->stripe_id)
                 ->withCoupon($request->coupon)
                 ->create($request->token);
-
         } catch(IncompletePayment $e) {
             return redirect()->route('cashier.payment', [
                 $e->payment->id,
-                'redirect' => route('account.subscriptions')
+                'redirect' => route('account.subscriptions'),
             ])->with('message', 'An email has been sent with instructions on how to verify your payment.');
         }
 

@@ -22,7 +22,7 @@ class InvoicePresenter
     {
         $formatter = new IntlMoneyFormatter(
             new NumberFormatter(config('cashier.currency_locale'), NumberFormatter::CURRENCY),
-            new ISOCurrencies()
+            new ISOCurrencies
         );
         $money = new Money(
             $this->model->amount_due,
@@ -36,5 +36,4 @@ class InvoicePresenter
     {
         return (new Carbon($this->model->next_payment_attempt))->toDateString();
     }
-
 }

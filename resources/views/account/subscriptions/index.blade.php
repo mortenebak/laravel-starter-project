@@ -11,14 +11,14 @@
             <p>
                 Here's a summary of your subscription.
             </p>
-            @if(auth()->user()->subscribed())
-                @if($subscription)
+            @if (auth()->user()->subscribed())
+                @if ($subscription)
                     <ul class="list-disc pl-5">
                         <li>
-                            {{auth()->user()->plan->title}}
-                            ({{$subscription->amount()}}/{{$subscription->interval()}})  - <a wire:navigate.hover href="{{ route('account.subscriptions.swap') }}">Change</a>
+                            {{ auth()->user()->plan->title }}
+                            ({{ $subscription->amount() }}/{{ $subscription->interval() }})  - <a wire:navigate.hover href="{{ route('account.subscriptions.swap') }}">Change</a>
                         </li>
-{{--                        @if(auth()->user()->subscription()->cancelled())--}}
+{{--                        @if (auth()->user()->subscription()->cancelled())--}}
 {{--                            <li>--}}
 {{--                                Ends at {{ $subscription->cancelAt() }}--}}
 {{--                                <a href="{{ route('account.subscriptions.resume') }}" class="underline">Resume--}}
@@ -26,11 +26,11 @@
 {{--                            </li>--}}
 {{--                        @endif--}}
 
-                        @if($invoice)
+                        @if ($invoice)
                             <li>Next Payment {{ $invoice->amount() }} on {{ $invoice->nextPaymentAttempt() }}</li>
                         @endif
 
-                        @if($customer)
+                        @if ($customer)
                             <li>Balance {{ $customer->balance() }}</li>
                         @endif
 

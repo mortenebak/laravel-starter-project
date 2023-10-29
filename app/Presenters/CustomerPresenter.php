@@ -21,7 +21,7 @@ class CustomerPresenter
     {
         $formatter = new IntlMoneyFormatter(
             new NumberFormatter(config('cashier.currency_locale'), NumberFormatter::CURRENCY),
-            new ISOCurrencies()
+            new ISOCurrencies
         );
         $money = new Money(
             $this->model->balance,
@@ -30,6 +30,4 @@ class CustomerPresenter
 
         return $formatter->format($money);
     }
-
-
 }

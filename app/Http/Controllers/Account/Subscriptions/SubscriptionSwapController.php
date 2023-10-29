@@ -12,12 +12,13 @@ class SubscriptionSwapController extends Controller
     public function index(Request $request)
     {
         $plans = Plan::query()->where('slug', '!=', $request->user()->plan->slug)->get();
+
         return view('account.subscriptions.swap', compact('plans'));
     }
 
     public function store(Request $request)
     {
-        $this->validate($request, [
+        request()->validate($request, [
             'plan' => 'required|exists:plans,slug',
         ]);
 
@@ -28,7 +29,7 @@ class SubscriptionSwapController extends Controller
         } catch (IncompletePayment $e) {
             return redirect()->route('cashier.payment', [
                 $e->payment->id,
-                'redirect' => route('account.subscriptions')
+                'redirect' => route('account.subscriptions'),
             ])->with('message', 'An email has been sent with instructions on how to verify your payment.');
         }
 

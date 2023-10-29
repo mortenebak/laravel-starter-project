@@ -66,28 +66,25 @@ class User extends Authenticatable
 
     public function presentSubscription(): ?SubscriptionPresenter
     {
-        if (!$subscription = $this->subscription()) {
+        if (! $subscription = $this->subscription()) {
             return null;
         }
 
         return new SubscriptionPresenter($subscription->asStripeSubscription());
-
     }
 
     public function presentUpcomingInvoice(): ?InvoicePresenter
     {
-        if (!$upcomingInvoice = $this->upcomingInvoice()) {
+        if (! $upcomingInvoice = $this->upcomingInvoice()) {
             return null;
         }
 
         return new InvoicePresenter($upcomingInvoice->asStripeInvoice());
-
     }
 
     public function presentCustomer(): ?CustomerPresenter
     {
-
-        if (!$this->hasStripeId()) {
+        if (! $this->hasStripeId()) {
             return null;
         }
 

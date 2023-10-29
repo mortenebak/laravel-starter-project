@@ -22,7 +22,7 @@
             <div class="space-x-4">
                 @if (Route::has('login'))
                     @auth
-                        @if(!auth()->user()->subscribed())
+                        @if (!auth()->user()->subscribed())
                             <a wire:navigate.hover href="{{ route('subscriptions.plans') }}"
                                class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-white whitespace-no-wrap bg-primary-600 border border-primary-700 rounded-md shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">
                                 {{ __('Upgrade') }}

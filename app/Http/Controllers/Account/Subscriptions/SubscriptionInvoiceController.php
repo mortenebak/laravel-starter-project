@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class SubscriptionInvoiceController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware(['auth']);
@@ -27,7 +26,5 @@ class SubscriptionInvoiceController extends Controller
 //            'vendor' => config('app.name'),
 //            'product' => 'Pro Subscription',
 //        ]);
-
-
     }
 }

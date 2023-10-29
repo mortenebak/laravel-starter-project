@@ -5,7 +5,7 @@
         <x-label for="card-holder-name">{{ __('Name on Card') }}</x-label>
         <x-input id="card-holder-name" name="name" type="text" :value="old('name')" autofocus
                  placeholder="{{ __('Name on Card') }}"/>
-        @if($errors->first('name'))
+        @if ($errors->first('name'))
             <p class="text-red-500 text-xs italic mt-4">{{ $errors->first('name') }}</p>
         @endif
     </div>
