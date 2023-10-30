@@ -12,14 +12,14 @@ class PlanSeeder extends Seeder
      */
     public function run(): void
     {
-        if (!Plan::query()->where('slug', '=', 'pro-monthly')->exists()) {
+        if (! Plan::query()->where('slug', '=', 'pro-monthly')->exists()) {
             Plan::query()->create([
                 'title' => 'Pro - 39 DKK / måned',
                 'slug' => 'pro-monthly',
                 'stripe_id' => 'price_1M9oZfKePSHD5WYkw7y8wq1R',
             ]);
         }
-        if (!Plan::query()->where('slug', '=', 'pro-yearly')->exists()) {
+        if (! Plan::query()->where('slug', '=', 'pro-yearly')->exists()) {
             Plan::query()->create([
                 'title' => 'Pro - 399 DKK / år',
                 'slug' => 'pro-yearly',
