@@ -20,6 +20,7 @@ It comes with a basic user management, role management and permissions managemen
 
 - [Laravel Pint](https://github.com/laravel/pint) for code style fixes
 - [PestPHP](https://pestphp.com) for testing
+- [missing-livewire-assertions](https://github.com/christophrumpel/missing-livewire-assertions) for extra testing of Livewire components by [Christoph Rumpel](https://github.com/christophrumpel)
 - [Strict Eloquent Models](https://planetscale.com/blog/laravels-safety-mechanisms) for safety
 - [Laravel Debugbar](https://github.com/barryvdh/laravel-debugbar) for debugging
 - [Laravel IDE helper](https://github.com/barryvdh/laravel-ide-helper) for IDE support
