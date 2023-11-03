@@ -4,7 +4,6 @@ namespace App\Livewire\Admin;
 
 use App\Models\Plan;
 use Exception;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\View\View;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Component;
