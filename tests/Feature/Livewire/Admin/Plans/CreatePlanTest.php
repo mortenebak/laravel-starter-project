@@ -1,15 +1,15 @@
 <?php
 
 use App\Livewire\Admin\Plans\CreatePlan;
+use App\Models\Plan;
 use App\Models\User;
 use Livewire\Livewire;
 use Spatie\Permission\Models\Permission;
+use function Pest\Laravel\assertDatabaseCount;
 
 it('requires the correct access to view the component', function () {
     Livewire::test(CreatePlan::class)
         ->assertForbidden();
-
-    Permission::create(['name' => 'create plans']);
 
     $user = User::factory()->create();
     $user->givePermissionTo('create plans');
@@ -19,8 +19,7 @@ it('requires the correct access to view the component', function () {
         ->assertOk();
 });
 
-test('it has wired properties and methods', function () {
-    Permission::create(['name' => 'create plans']);
+it('has wired properties and methods', function () {
 
     $user = User::factory()->create();
     $user->givePermissionTo('create plans');
@@ -34,6 +33,56 @@ test('it has wired properties and methods', function () {
         ->assertMethodWired('create');
 });
 
-todo('it validates the fields');
+it('validates the fields', function() {
 
-todo('a plan can be created');
+    $user = User::factory()->create();
+    $user->givePermissionTo('create plans');
+
+    Livewire::actingAs($user)
+        ->test(CreatePlan::class)
+        ->assertOk()
+        ->set('title', '')
+        ->set('slug', '')
+        ->set('stripe_id', '')
+        ->call('create')
+        ->assertHasErrors(['title', 'slug', 'stripe_id']);
+
+    Plan::factory()->create(['slug' => 'test-plan']);
+
+    Livewire::actingAs($user)
+        ->test(CreatePlan::class)
+        ->assertOk()
+        ->set('title', 'Test Plan')
+        ->set('slug', 'test-plan')
+        ->set('stripe_id', 'test-plan')
+        ->call('create')
+        ->assertHasErrors(['slug']);
+
+});
+
+it('can create a plan', function() {
+
+    $user = User::factory()->create();
+    $user->givePermissionTo('create plans');
+
+    assertDatabaseCount('plans', 0);
+
+    Livewire::actingAs($user)
+        ->test(CreatePlan::class)
+        ->assertOk()
+        ->set('title', 'Test Plan')
+        ->set('slug', 'test-plan')
+        ->set('stripe_id', 'test-plan')
+        ->call('create')
+        ->assertHasNoErrors()
+        ->assertDispatched('planCreated');
+
+    assertDatabaseCount('plans', 1);
+
+    $this->assertDatabaseHas('plans', [
+        'title' => 'Test Plan',
+        'slug' => 'test-plan',
+        'stripe_id' => 'test-plan'
+    ]);
+
+});

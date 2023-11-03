@@ -20,6 +20,7 @@ Route::prefix('admin')->as('admin.')->middleware(['auth', 'can:access dashboard'
     Route::delete('users/{user}', \App\Livewire\Admin\Users::class)->name('users.delete')->middleware('can:delete users');
     Route::get('roles', \App\Livewire\Admin\Roles::class)->name('roles')->middleware('can:view roles');
     Route::get('permissions', \App\Livewire\Admin\Permissions::class)->name('permissions')->middleware('can:view permissions');
+    Route::get('plans', \App\Livewire\Admin\Plans::class)->name('plans')->middleware('can:view plans');
     Route::get('profile', \App\Livewire\Admin\Profile\EditProfile::class)->name('profile.edit');
     Route::get('change-password', ChangePassword::class)->name('change-password');
 });

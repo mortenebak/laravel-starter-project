@@ -40,6 +40,11 @@ abstract class TestCase extends BaseTestCase
         Permission::create(['name' => 'delete permissions']);
         Permission::create(['name' => 'create permissions']);
 
+        Permission::create(['name' => 'view plans']);
+        Permission::create(['name' => 'edit plans']);
+        Permission::create(['name' => 'delete plans']);
+        Permission::create(['name' => 'create plans']);
+
         Role::findByName('Super Admin')->syncPermissions(Permission::all());
         $this->user->assignRole('Super Admin');
     }
