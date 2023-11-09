@@ -4,7 +4,7 @@ use App\Livewire\Admin\Plans\CreatePlan;
 use App\Models\Plan;
 use App\Models\User;
 use Livewire\Livewire;
-use Spatie\Permission\Models\Permission;
+
 use function Pest\Laravel\assertDatabaseCount;
 
 it('requires the correct access to view the component', function () {
@@ -20,7 +20,6 @@ it('requires the correct access to view the component', function () {
 });
 
 it('has wired properties and methods', function () {
-
     $user = User::factory()->create();
     $user->givePermissionTo('create plans');
 
@@ -60,7 +59,6 @@ it('validates the fields', function () {
         ->assertHasErrors(['slug']);
 
     assertDatabaseCount('plans', 1);
-
 });
 
 it('can create a plan', function () {
