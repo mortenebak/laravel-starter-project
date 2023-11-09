@@ -49,6 +49,8 @@ it('validates the fields', function() {
 
     Plan::factory()->create(['slug' => 'test-plan']);
 
+    assertDatabaseCount('plans', 1);
+
     Livewire::actingAs($user)
         ->test(CreatePlan::class)
         ->assertOk()
@@ -57,6 +59,8 @@ it('validates the fields', function() {
         ->set('stripe_id', 'test-plan')
         ->call('create')
         ->assertHasErrors(['slug']);
+
+    assertDatabaseCount('plans', 1);
 
 });
 
