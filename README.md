@@ -3,6 +3,8 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/mortenebak/laravel-starter-project)
 ![GitHub Sponsors](https://img.shields.io/github/sponsors/mortenebak)
 
+![alt text](docs/backend.png "Backend View")
+
 > Updated for Laravel 11.0 **and** Livewire 3.0
 
 This repository contains my starting point when developing a new Laravel project.
