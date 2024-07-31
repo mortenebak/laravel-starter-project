@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Middleware\NotSubscribed;
+use App\Http\Middleware\Subscribed;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Passwords\Confirm;
 use App\Livewire\Auth\Passwords\Email;
@@ -60,13 +62,13 @@ Route::group(['namespace' => 'Account', 'prefix' => 'account'], function () {
     Route::get('/', [\App\Http\Controllers\Account\AccountController::class, 'index'])->name('account')->middleware('auth');
 
     Route::group(['namespace' => 'Subscriptions', 'prefix' => 'subscriptions'], function () {
-        Route::get('/', [\App\Http\Controllers\Account\Subscriptions\SubscriptionController::class, 'index'])->name('account.subscriptions')->middleware(['auth', 'not.subscribed']);
+        Route::get('/', [\App\Http\Controllers\Account\Subscriptions\SubscriptionController::class, 'index'])->name('account.subscriptions')->middleware(['auth', NotSubscribed::class]);
 
-        Route::get('cancel', [\App\Http\Controllers\Account\Subscriptions\SubscriptionCancelController::class, 'index'])->name('account.subscriptions.cancel')->middleware(['auth', 'subscribed']);
-        Route::post('cancel', [\App\Http\Controllers\Account\Subscriptions\SubscriptionCancelController::class, 'store'])->name('account.subscriptions.cancel.post')->middleware(['auth', 'subscribed']);
+        Route::get('cancel', [\App\Http\Controllers\Account\Subscriptions\SubscriptionCancelController::class, 'index'])->name('account.subscriptions.cancel')->middleware(['auth', Subscribed::class]);
+        Route::post('cancel', [\App\Http\Controllers\Account\Subscriptions\SubscriptionCancelController::class, 'store'])->name('account.subscriptions.cancel.post')->middleware(['auth', Subscribed::class]);
 
-        Route::get('resume', [\App\Http\Controllers\Account\Subscriptions\SubscriptionResumeController::class, 'index'])->name('account.subscriptions.resume')->middleware(['auth', 'subscribed']);
-        Route::post('resume', [\App\Http\Controllers\Account\Subscriptions\SubscriptionResumeController::class, 'store'])->name('account.subscriptions.resume.post')->middleware(['auth', 'subscribed']);
+        Route::get('resume', [\App\Http\Controllers\Account\Subscriptions\SubscriptionResumeController::class, 'index'])->name('account.subscriptions.resume')->middleware(['auth', Subscribed::class]);
+        Route::post('resume', [\App\Http\Controllers\Account\Subscriptions\SubscriptionResumeController::class, 'store'])->name('account.subscriptions.resume.post')->middleware(['auth', Subscribed::class]);
 
         Route::get('invoices', [\App\Http\Controllers\Account\Subscriptions\SubscriptionInvoiceController::class, 'index'])->name('account.subscriptions.invoices')->middleware(['auth']);
         Route::get('invoices/{id}', [\App\Http\Controllers\Account\Subscriptions\SubscriptionInvoiceController::class, 'show'])->name('account.subscriptions.invoice')->middleware(['auth']);
@@ -88,3 +90,5 @@ Route::group(['namespace' => 'Subscriptions'], function () {
     Route::get('subscriptions', [\App\Http\Controllers\Subscriptions\SubscriptionController::class, 'index'])->name('subscriptions');
     Route::post('subscriptions', [\App\Http\Controllers\Subscriptions\SubscriptionController::class, 'store'])->name('subscriptions.store');
 });
+
+include __DIR__ . '/admin.php';
