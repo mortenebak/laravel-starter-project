@@ -38,7 +38,7 @@ class ValidCoupon implements Rule
 
                 return false;
             }
-        } catch(InvalidRequestException $e) {
+        } catch (InvalidRequestException $e) {
             $this->message = 'The coupon does not exists.';
 
             return false;

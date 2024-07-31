@@ -11,6 +11,8 @@ class PlanController extends Controller
     {
         $plans = Plan::get();
 
-        return view('subscriptions.plans', compact('plans'));
+        return view('subscriptions.plans', [
+            'plans' => $plans,
+        ]);
     }
 }

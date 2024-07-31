@@ -3,28 +3,23 @@
 namespace App\Http\Controllers\Account\Subscriptions;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class SubscriptionInvoiceController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth']);
-    }
-
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         $invoices = $request->user()->invoices();
 
-        return view('account.subscriptions.invoices', compact('invoices'));
+        return view('account.subscriptions.invoices', [
+            'invoices' => $invoices,
+        ]);
     }
 
-    public function show(Request $request, $id)
+    public function show(Request $request, string $id): RedirectResponse
     {
         return redirect($request->user()->findInvoice($id)->asStripeInvoice()->invoice_pdf);
-//        return $request->user()->downloadInvoice($id, [
-//            'vendor' => config('app.name'),
-//            'product' => 'Pro Subscription',
-//        ]);
     }
 }

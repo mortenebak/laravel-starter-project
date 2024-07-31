@@ -59,7 +59,7 @@ class EditUser extends ModalComponent
             $this->dispatch('userUpdated');
 
             $this->closeModal();
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             $this->alert('error', 'Something went wrong!');
         }
     }

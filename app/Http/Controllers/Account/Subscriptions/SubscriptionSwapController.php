@@ -13,7 +13,9 @@ class SubscriptionSwapController extends Controller
     {
         $plans = Plan::query()->where('slug', '!=', $request->user()->plan->slug)->get();
 
-        return view('account.subscriptions.swap', compact('plans'));
+        return view('account.subscriptions.swap', [
+            'plans' => $plans,
+        ]);
     }
 
     public function store(Request $request)

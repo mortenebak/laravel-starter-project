@@ -10,11 +10,6 @@ use Laravel\Cashier\Exceptions\IncompletePayment;
 
 class SubscriptionController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['auth', 'not.subscribed']);
-    }
-
     public function index(Request $request)
     {
         return view('subscriptions.checkout', [
@@ -34,13 +29,13 @@ class SubscriptionController extends Controller
         ]);
 
         $plan = Plan::query()->where('slug', $request->get('plan', 'pro-monthly'))
-                    ->first();
+            ->first();
 
         try {
             $request->user()->newSubscription('default', $plan->stripe_id)
                 ->withCoupon($request->coupon)
                 ->create($request->token);
-        } catch(IncompletePayment $e) {
+        } catch (IncompletePayment $e) {
             return redirect()->route('cashier.payment', [
                 $e->payment->id,
                 'redirect' => route('account.subscriptions'),

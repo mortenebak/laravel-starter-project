@@ -57,19 +57,19 @@ Route::middleware('auth')->group(function () {
 
 // Subscription and Account stuff
 Route::group(['namespace' => 'Account', 'prefix' => 'account'], function () {
-    Route::get('/', [\App\Http\Controllers\Account\AccountController::class, 'index'])->name('account');
+    Route::get('/', [\App\Http\Controllers\Account\AccountController::class, 'index'])->name('account')->middleware('auth');
 
     Route::group(['namespace' => 'Subscriptions', 'prefix' => 'subscriptions'], function () {
-        Route::get('/', [\App\Http\Controllers\Account\Subscriptions\SubscriptionController::class, 'index'])->name('account.subscriptions');
+        Route::get('/', [\App\Http\Controllers\Account\Subscriptions\SubscriptionController::class, 'index'])->name('account.subscriptions')->middleware(['auth', 'not.subscribed']);
 
-        Route::get('cancel', [\App\Http\Controllers\Account\Subscriptions\SubscriptionCancelController::class, 'index'])->name('account.subscriptions.cancel');
-        Route::post('cancel', [\App\Http\Controllers\Account\Subscriptions\SubscriptionCancelController::class, 'store'])->name('account.subscriptions.cancel.post');
+        Route::get('cancel', [\App\Http\Controllers\Account\Subscriptions\SubscriptionCancelController::class, 'index'])->name('account.subscriptions.cancel')->middleware(['auth', 'subscribed']);
+        Route::post('cancel', [\App\Http\Controllers\Account\Subscriptions\SubscriptionCancelController::class, 'store'])->name('account.subscriptions.cancel.post')->middleware(['auth', 'subscribed']);
 
-        Route::get('resume', [\App\Http\Controllers\Account\Subscriptions\SubscriptionResumeController::class, 'index'])->name('account.subscriptions.resume');
-        Route::post('resume', [\App\Http\Controllers\Account\Subscriptions\SubscriptionResumeController::class, 'store'])->name('account.subscriptions.resume.post');
+        Route::get('resume', [\App\Http\Controllers\Account\Subscriptions\SubscriptionResumeController::class, 'index'])->name('account.subscriptions.resume')->middleware(['auth', 'subscribed']);
+        Route::post('resume', [\App\Http\Controllers\Account\Subscriptions\SubscriptionResumeController::class, 'store'])->name('account.subscriptions.resume.post')->middleware(['auth', 'subscribed']);
 
-        Route::get('invoices', [\App\Http\Controllers\Account\Subscriptions\SubscriptionInvoiceController::class, 'index'])->name('account.subscriptions.invoices');
-        Route::get('invoices/{id}', [\App\Http\Controllers\Account\Subscriptions\SubscriptionInvoiceController::class, 'show'])->name('account.subscriptions.invoice');
+        Route::get('invoices', [\App\Http\Controllers\Account\Subscriptions\SubscriptionInvoiceController::class, 'index'])->name('account.subscriptions.invoices')->middleware(['auth']);
+        Route::get('invoices/{id}', [\App\Http\Controllers\Account\Subscriptions\SubscriptionInvoiceController::class, 'show'])->name('account.subscriptions.invoice')->middleware(['auth']);
 
         Route::get('swap', [\App\Http\Controllers\Account\Subscriptions\SubscriptionSwapController::class, 'index'])->name('account.subscriptions.swap');
         Route::post('swap', [\App\Http\Controllers\Account\Subscriptions\SubscriptionSwapController::class, 'store'])->name('account.subscriptions.swap.post');
