@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('admin')->as('admin.')->middleware(['auth', 'can:access dashboard'])->group(function () {
+
     Route::get('/', \App\Livewire\Admin\Dashboard::class)->name('dashboard');
     Route::get('users', \App\Livewire\Admin\Users::class)->name('users')->middleware('can:view users');
     Route::delete('users/{user}', \App\Livewire\Admin\Users::class)->name('users.delete')->middleware('can:delete users');
@@ -23,4 +23,4 @@ Route::prefix('admin')->as('admin.')->middleware(['auth', 'can:access dashboard'
     Route::get('plans', \App\Livewire\Admin\Plans::class)->name('plans')->middleware('can:view plans');
     Route::get('profile', \App\Livewire\Admin\Profile\EditProfile::class)->name('profile.edit');
     Route::get('change-password', ChangePassword::class)->name('change-password');
-});
+

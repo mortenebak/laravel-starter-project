@@ -3,7 +3,7 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/mortenebak/laravel-starter-project)
 ![GitHub Sponsors](https://img.shields.io/github/sponsors/mortenebak)
 
-> Updated for Laravel 10.0 **and** Livewire 3.0
+> Updated for Laravel 11.0 **and** Livewire 3.0
 
 This repository contains my starting point when developing a new Laravel project.
 It comes with a basic user management, role management and permissions management and a dashboard.
