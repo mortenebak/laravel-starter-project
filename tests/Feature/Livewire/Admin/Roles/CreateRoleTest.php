@@ -3,6 +3,7 @@
 use App\Livewire\Admin\Roles\CreateRole;
 use App\Models\User;
 use Livewire\Livewire;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 use function Pest\Laravel\assertDatabaseHas;
@@ -51,10 +52,17 @@ test('a role can have multiple permissions attached', function () {
     $user = User::factory()->create();
     $user->givePermissionTo('create roles');
 
+    $permissions = [
+        Permission::query()->where('name', '=', 'view users')->first()->id,
+        Permission::query()->where('name', '=', 'edit users')->first()->id,
+        Permission::query()->where('name', '=', 'delete users')->first()->id,
+        Permission::query()->where('name', '=', 'create users')->first()->id,
+    ];
+
     Livewire::actingAs($user)
         ->test('admin.roles.create-role')
         ->set('name', 'test role')
-        ->set('rolePermissions', ['view users', 'edit users', 'delete users', 'create users'])
+        ->set('rolePermissions', $permissions)
         ->call('create')
         ->assertHasNoErrors();
 
