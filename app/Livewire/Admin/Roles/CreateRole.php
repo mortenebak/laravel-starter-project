@@ -26,8 +26,8 @@ class CreateRole extends ModalComponent
 
     public function mount()
     {
-        abort_if(!auth()->check(), 403);
-        abort_if(!auth()
+        abort_if(! auth()->check(), 403);
+        abort_if(! auth()
             ->user()
             ->hasPermissionTo('create roles'), 403);
     }
@@ -43,9 +43,9 @@ class CreateRole extends ModalComponent
             ]);
 
             $permissions = collect($this->rolePermissions)
-                ->map(function ($permission) use ($role) {
+                ->map(function ($permission) {
                     // convert string to int
-                    return (int)$permission;
+                    return (int) $permission;
                 })
                 ->toArray();
 

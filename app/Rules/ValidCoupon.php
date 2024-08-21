@@ -25,9 +25,9 @@ class ValidCoupon implements Rule
     /**
      * Determine if the validation rule passes.
      *
-     * @param string $attribute
-     * @param mixed $value
-     * @return bool
+     * @param  string  $attribute
+     * @param  mixed  $value
+     *
      * @throws ApiErrorException
      */
     public function passes($attribute, $value): bool
@@ -51,8 +51,6 @@ class ValidCoupon implements Rule
 
     /**
      * Get the validation error message.
-     *
-     * @return string
      */
     public function message(): string
     {
