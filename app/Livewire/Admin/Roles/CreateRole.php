@@ -14,6 +14,7 @@ class CreateRole extends ModalComponent
     use LivewireAlert;
 
     public string $name = '';
+
     public array $rolePermissions = [];
 
     // set validation rules
@@ -42,7 +43,12 @@ class CreateRole extends ModalComponent
                 'name' => $this->name,
             ]);
 
-            $role->syncPermissions($this->rolePermissions);
+            $permissions = collect($this->rolePermissions)->map(function ($permission) use ($role) {
+                // convert string to int
+                return (int) $permission;
+            })->toArray();
+
+            $role->syncPermissions($permissions);
 
             $this->alert('success', 'Role Created Successfully!');
 
