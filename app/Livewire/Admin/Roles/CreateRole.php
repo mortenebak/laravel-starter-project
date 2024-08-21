@@ -43,7 +43,7 @@ class CreateRole extends ModalComponent
                 'name' => $this->name,
             ]);
 
-            $permissions = collect($this->rolePermissions)->map(function ($permission) use ($role) {
+            $permissions = collect($this->rolePermissions)->map(function ($permission) {
                 // convert string to int
                 return (int) $permission;
             })->toArray();
