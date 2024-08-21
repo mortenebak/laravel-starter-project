@@ -6,6 +6,7 @@ use App\Models\User;
 use Exception;
 use Illuminate\View\View;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Livewire\Attributes\Rule;
 use LivewireUI\Modal\ModalComponent;
 use Spatie\Permission\Models\Role;
 
@@ -14,15 +15,13 @@ class EditUser extends ModalComponent
     use LivewireAlert;
 
     public $user;
+
+    #[Rule(['required', 'string', 'max:255'])]
     public string $name = '';
+
+    #[Rule(['required', 'string', 'email', 'max:255'])]
     public string $email = '';
     public array $userRoles = [];
-
-    // set validation rules
-    protected $rules = [
-        'name' => 'required',
-        'email' => 'required|email',
-    ];
 
     public static function modalMaxWidth(): string
     {
@@ -43,6 +42,7 @@ class EditUser extends ModalComponent
     {
         // Validate request
         $this->validate();
+
         try {
             // Update category
             $this->user->update([

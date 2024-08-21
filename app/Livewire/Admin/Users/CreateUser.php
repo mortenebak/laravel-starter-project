@@ -9,21 +9,21 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Livewire\Attributes\Rule;
 use LivewireUI\Modal\ModalComponent;
 
 class CreateUser extends ModalComponent
 {
     use LivewireAlert;
 
+    #[Rule(['required', 'string', 'max:255'])]
     public $name;
-    public $email;
-    public $password = '';
 
-    protected $rules = [
-        'name' => 'required|string|max:255',
-        'email' => 'required|string|email|max:255|unique:users',
-        'password' => 'required|string|min:8',
-    ];
+    #[Rule(['required', 'string', 'email', 'max:255', 'unique:users,email'])]
+    public $email;
+
+    #[Rule(['required', 'string', 'min:8'])]
+    public $password = '';
 
     public function mount(): void
     {
@@ -35,11 +35,12 @@ class CreateUser extends ModalComponent
         $this->validate();
 
         try {
-            $user = User::query()->create([
-                'name' => $this->name,
-                'email' => $this->email,
-                'password' => Hash::make($this->password),
-            ]);
+            $user = User::query()
+                ->create([
+                    'name' => $this->name,
+                    'email' => $this->email,
+                    'password' => Hash::make($this->password),
+                ]);
 
             event(new Registered($user));
 

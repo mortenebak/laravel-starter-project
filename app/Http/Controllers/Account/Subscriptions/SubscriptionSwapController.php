@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Account\Subscriptions;
 
 use App\Http\Controllers\Controller;
 use App\Models\Plan;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Laravel\Cashier\Exceptions\IncompletePayment;
 
 class SubscriptionSwapController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         $plans = Plan::query()->where('slug', '!=', $request->user()->plan->slug)->get();
 

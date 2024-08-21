@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Auth;
 
+use Illuminate\Contracts\View\View;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 class Login extends Component
@@ -33,8 +35,9 @@ class Login extends Component
         return redirect()->intended(route('home'));
     }
 
-    public function render()
+    #[Layout('layouts.auth')]
+    public function render(): View
     {
-        return view('livewire.auth.login')->extends('layouts.auth');
+        return view('livewire.auth.login');
     }
 }

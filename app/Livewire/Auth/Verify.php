@@ -2,6 +2,8 @@
 
 namespace App\Livewire\Auth;
 
+use Illuminate\Contracts\View\View;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 class Verify extends Component
@@ -19,8 +21,9 @@ class Verify extends Component
         session()->flash('resent');
     }
 
-    public function render()
+    #[Layout('layouts.auth')]
+    public function render(): View
     {
-        return view('livewire.auth.verify')->extends('layouts.auth');
+        return view('livewire.auth.verify');
     }
 }

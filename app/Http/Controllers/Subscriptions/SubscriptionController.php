@@ -5,12 +5,13 @@ namespace App\Http\Controllers\Subscriptions;
 use App\Http\Controllers\Controller;
 use App\Models\Plan;
 use App\Rules\ValidCoupon;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Laravel\Cashier\Exceptions\IncompletePayment;
 
 class SubscriptionController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request): View
     {
         return view('subscriptions.checkout', [
             'intent' => $request->user()->createSetupIntent(),

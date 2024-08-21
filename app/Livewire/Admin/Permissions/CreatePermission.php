@@ -5,6 +5,7 @@ namespace App\Livewire\Admin\Permissions;
 use Exception;
 use Illuminate\View\View;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Livewire\Attributes\Rule;
 use LivewireUI\Modal\ModalComponent;
 use Spatie\Permission\Models\Permission;
 
@@ -12,12 +13,8 @@ class CreatePermission extends ModalComponent
 {
     use LivewireAlert;
 
+    #[Rule(['required', 'max:255', 'unique:permissions,name'])]
     public string $name = '';
-
-    // set validation rules
-    protected $rules = [
-        'name' => 'required|max:255|unique:permissions,name',
-    ];
 
     public static function modalMaxWidth(): string
     {

@@ -3,7 +3,9 @@
 namespace App\Livewire\Auth\Passwords;
 
 use App\Models\User;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Hash;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 class ChangePassword extends Component
@@ -37,8 +39,9 @@ class ChangePassword extends Component
         }
     }
 
-    public function render()
+    #[Layout('layouts.admin')]
+    public function render(): View
     {
-        return view('livewire.auth.passwords.change-password')->extends('layouts.admin');
+        return view('livewire.auth.passwords.change-password');
     }
 }

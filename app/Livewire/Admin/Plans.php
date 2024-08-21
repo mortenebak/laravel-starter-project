@@ -6,6 +6,7 @@ use App\Models\Plan;
 use Exception;
 use Illuminate\View\View;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Spatie\Permission\Models\Permission;
@@ -47,20 +48,20 @@ class Plans extends Component
         $this->sortField = $field;
     }
 
+    #[Layout('layouts.admin')]
     public function render(): View
     {
         return view('livewire.admin.plans', [
             'plans' => Plan::query()->search($this->searchableFields, $this->search)
                 ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                 ->paginate($this->perPage),
-        ])
-            ->extends('layouts.admin');
+        ]);
     }
 
     public function destroy($id): void
     {
         try {
-            Permission::find($id)->delete();
+            Permission::query()->find($id)->delete();
             $this->alert('success', 'Permission deleted successfully!');
         } catch (Exception $e) {
             $this->alert('error', 'Something went wrong!');

@@ -14,6 +14,7 @@ class EditRole extends ModalComponent
     use LivewireAlert;
 
     public $role;
+
     public string $name = '';
     public array $rolePermissions = [];
 

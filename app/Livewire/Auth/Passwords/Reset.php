@@ -3,9 +3,11 @@
 namespace App\Livewire\Auth\Passwords;
 
 use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 
 class Reset extends Component
@@ -74,9 +76,10 @@ class Reset extends Component
         return Password::broker();
     }
 
-    public function render()
+    #[Layout('layouts.auth')]
+    public function render(): View
     {
-        return view('livewire.auth.passwords.reset')->extends('layouts.auth');
+        return view('livewire.auth.passwords.reset');
     }
 
     /**

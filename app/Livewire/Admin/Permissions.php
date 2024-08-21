@@ -5,6 +5,7 @@ namespace App\Livewire\Admin;
 use Exception;
 use Illuminate\View\View;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Spatie\Permission\Models\Permission;
@@ -46,6 +47,7 @@ class Permissions extends Component
         $this->sortField = $field;
     }
 
+    #[Layout('layouts.admin')]
     public function render(): View
     {
         return view('livewire.admin.permissions', [
@@ -53,8 +55,7 @@ class Permissions extends Component
                 ->with('roles')
                 ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                 ->paginate($this->perPage),
-        ])
-            ->extends('layouts.admin');
+        ]);
     }
 
     public function destroy($id): void
