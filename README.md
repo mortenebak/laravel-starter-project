@@ -75,11 +75,9 @@ php artisan app:create-super-admin
 Feel free to contribute to this project by submitting a pull request.
 
 # Todo
-- [ ] Add Admin Crud for Stripe Plans
 - [ ] Add Default Subscriber Role when a user subscribes
 - [ ] Remove Default Subscriber Role when a user unsubscribes
 - [ ] Option for user to delete account
-- [x] Add concept of Impersonation
 - [ ] Add more documentation
 
 # Credits
