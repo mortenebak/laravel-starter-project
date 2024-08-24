@@ -66,6 +66,14 @@
                             @endforeach
                         </x-table.cell>
                         <x-table.cell class="flex items-center space-x-2 justify-end">
+                            @can('impersonate users')
+                                @if ($user->id !== auth()->id())
+                                    <a href="{{ route('impersonate', $user) }}">
+                                        <button class="btn btn-secondary">{{ __('Impersonate') }}</button>
+                                    </a>
+                                @endif
+                            @endcan
+
                             @can('view users')
                                 <button class="btn btn-secondary">{{ __('Show') }}</button>
                             @endcan

@@ -37,6 +37,8 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'delete plans']);
         Permission::create(['name' => 'create plans']);
 
+        Permission::create(['name' => 'impersonate users']);
+
         $superAdmin = Role::findByName('Super Admin')->syncPermissions(Permission::all());
     }
 }

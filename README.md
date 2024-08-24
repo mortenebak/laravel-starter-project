@@ -79,7 +79,7 @@ Feel free to contribute to this project by submitting a pull request.
 - [ ] Add Default Subscriber Role when a user subscribes
 - [ ] Remove Default Subscriber Role when a user unsubscribes
 - [ ] Option for user to delete account
-- [ ] Add concept of Impersonation
+- [x] Add concept of Impersonation
 - [ ] Add more documentation
 
 # Credits

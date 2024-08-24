@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\EmailVerificationController;
+use App\Http\Controllers\Auth\ImpersonateController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Middleware\NotSubscribed;
 use App\Http\Middleware\Subscribed;
@@ -55,6 +56,10 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', LogoutController::class)
         ->name('logout');
+
+    Route::get('impersonate/{user}', [ImpersonateController::class, 'impersonate'])->middleware('can:impersonate users')->name('impersonate');
+    Route::get('stop-impersonating', [ImpersonateController::class, 'stopImpersonating'])->middleware('auth')->name('stop-impersonating');
+
 });
 
 // Subscription and Account stuff

@@ -1,3 +1,19 @@
+@if (Session::has('admin_user_id'))
+    <div class="py-2 flex items-center justify-center bg-red-600">
+
+        <a href="{{ route('stop-impersonating') }}" class="mx-4 flex space-x-2 items-center ml-10 text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 class="text-white">
+                <path
+                    d="M2 12a5 5 0 0 0 5 5 8 8 0 0 1 5 2 8 8 0 0 1 5-2 5 5 0 0 0 5-5V7h-5a8 8 0 0 0-5 2 8 8 0 0 0-5-2H2Z"></path>
+                <path d="M6 11c1.5 0 3 .5 3 2-2 0-3 0-3-2Z"></path>
+                <path d="M18 11c-1.5 0-3 .5-3 2 2 0 3 0 3-2Z"></path>
+            </svg>
+            <span>Stop impersonating</span>
+        </a>
+    </div>
+@endif
 <section class="relative w-full px-8 text-gray-700 bg-white body-font">
     <div class="container flex flex-col flex-wrap items-center justify-between py-5 mx-auto md:flex-row max-w-7xl">
         <a href="{{ route('home') }}"
@@ -33,10 +49,10 @@
                             {{ __('My Account') }}
                         </a>
                         @can('access dashboard')
-                        <a href="{{ route('admin.dashboard') }}"
-                           class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-gray-600 whitespace-no-wrap bg-white border border-gray-200 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:shadow-none">
-                            {{ __('Admin') }}
-                        </a>
+                            <a href="{{ route('admin.dashboard') }}"
+                               class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-gray-600 whitespace-no-wrap bg-white border border-gray-200 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:shadow-none">
+                                {{ __('Admin') }}
+                            </a>
                         @endcan
                         <a
                             href="{{ route('logout') }}"
