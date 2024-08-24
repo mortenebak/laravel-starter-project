@@ -4,11 +4,14 @@ namespace App\Livewire\Admin\Plans;
 
 use App\Models\Plan;
 use Illuminate\Contracts\View\View;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Attributes\Rule;
 use LivewireUI\Modal\ModalComponent;
 
 class CreatePlan extends ModalComponent
 {
+    use LivewireAlert;
+
     #[Rule(['required', 'max:255', 'unique:plans,title'])]
     public string $title = '';
 
@@ -29,6 +32,11 @@ class CreatePlan extends ModalComponent
         ]);
 
         $this->dispatch('planCreated');
+
+        $this->alert('success', 'Plan was created');
+
+        $this->closeModal();
+
     }
 
     public function mount(): void

@@ -14,4 +14,64 @@
         </div>
     </div>
 
+    <div class="flex flex-col space-y-4">
+        <div class="flex items-center justify-between">
+            <input type="text"
+                   class="w-1/4 rounded border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                   wire:model.live="search" placeholder="{{ __('Type in and search...') }}">
+            <div class="flex space-x-4">
+                <select wire:model.live="perPage"
+                        class="rounded border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                    <option value="10">{{ __('10 per page') }}</option>
+                    <option value="25">{{ __('25 per page') }}</option>
+                    <option value="50">{{ __('50 per page') }}</option>
+                </select>
+            </div>
+        </div>
+
+        <x-table wire:loading.class="opacity-50">
+            <x-slot name="head">
+                <x-table.heading><a href="#" wire:click.prevent="sortBy('id')">{{ __('ID') }}</a></x-table.heading>
+                <x-table.heading><a href="#" wire:click.prevent="sortBy('title')">{{ __('Title') }}</a>
+                </x-table.heading>
+                <x-table.heading><a href="#" wire:click.prevent="sortBy('stripe_id')">{{ __('Stripe ID') }}</a>
+                </x-table.heading>
+                <x-table.heading class="text-right">{{ __('Actions') }}</x-table.heading>
+            </x-slot>
+
+            <x-slot:body>
+                @forelse ($plans as $plan)
+                    <x-table.row>
+                        <x-table.cell>
+                            {{ $plan->id }}
+                        </x-table.cell>
+                        <x-table.cell>{{ $plan->title }}</x-table.cell>
+                        <x-table.cell>{{ $plan->stripe_id }}</x-table.cell>
+                        <x-table.cell class="text-right">
+                            @can('edit plans')
+                                <x-secondary-button wire:click.prevent="$dispatch('openModal', {component: 'admin.plans.edit-plan', arguments: { plan: {{ $plan->id }} }})">
+                                    @lang('plans.edit_plan')
+                                </x-secondary-button>
+                            @endcan
+                            @can('delete plans')
+                                <x-secondary-button wire:click.prevent="deletePlan('{{ $plan->id }}')" wire:confirm="{{ __('plans.confirm_deletion') }}">
+                                    @lang('plans.delete_plan')
+                                </x-secondary-button>
+                            @endcan
+                        </x-table.cell>
+                    </x-table.row>
+                @empty
+                    <x-table.row>
+                        <x-table.cell colspan="4">
+                            <div class="text-center py-2">
+                                @lang('plans.no_plans_found')
+                            </div>
+                        </x-table.cell>
+                    </x-table.row>
+                @endforelse
+            </x-slot:body>
+        </x-table>
+
+    </div>
+
 </div>
