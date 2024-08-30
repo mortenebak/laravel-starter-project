@@ -10,4 +10,5 @@ return [
     'update_successful' => 'Plan was updated',
     'save' => 'Save',
     'cancel' => 'Cancel',
+    'nav-item' => 'Plans'
 ];
