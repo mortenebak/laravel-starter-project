@@ -1,6 +1,6 @@
 <div>
     <div class="flex justify-between items-center mb-5 h-10">
-        <h1 class="text-3xl font-bold dark:text-gray-200">
+        <h1 class="text-3xl font-bold dark:text-stone-200">
             {{ __('Dashboard') }}
         </h1>
         <div>

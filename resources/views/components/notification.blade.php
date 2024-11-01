@@ -11,7 +11,7 @@
                 <div class="ml-2 w-0 flex-1 text-white" x-text="body">
 
                 </div>
-                <button class="inflex-flex text-gray-400"
+                <button class="inflex-flex text-stone-400"
                     x-on:click="body = ''">
                     <span class="sr-only">Close</span>
                     <span class="text-2xl">&times;</span>

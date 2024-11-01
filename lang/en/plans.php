@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'plans' => 'Plans',
     'edit_plan' => 'Edit plan',
     'delete_plan' => 'Delete plan',
     'confirm_deletion' => 'Are you sure you want to delete this plan?',

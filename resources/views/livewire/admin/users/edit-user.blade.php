@@ -3,30 +3,30 @@
     <h2 class="text-2xl font-bold dark:text-white">Edit user</h2>
 
     <div class="form-group">
-        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+        <label for="name" class="block mb-2 text-sm font-medium text-stone-900 dark:text-white">Name</label>
         <input id="name" wire:model.live="name" type="text"
-               class="@error('name') is-invalid @enderror bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+               class="@error('name') is-invalid @enderror bg-gray-50 border border-gray-300 text-stone-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                placeholder="Enter name" required>
         @error('name') <span class="text-danger">{{ $message }}</span>@enderror
     </div>
 
     <div class="form-group">
-        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">E-mail</label>
+        <label for="email" class="block mb-2 text-sm font-medium text-stone-900 dark:text-white">E-mail</label>
         <input id="email" wire:model.live="email" type="text"
-               class="@error('email') is-invalid @enderror bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+               class="@error('email') is-invalid @enderror bg-gray-50 border border-gray-300 text-stone-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                placeholder="Enter email" required>
         @error('email') <span class="text-danger">{{ $message }}</span>@enderror
     </div>
 
     @can('edit roles')
         <div class="form-group">
-            <label for="userRoles" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Roles</label>
+            <label for="userRoles" class="block mb-2 text-sm font-medium text-stone-900 dark:text-white">Roles</label>
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
                 @foreach ($roles as $role)
                     <div class="flex items-center">
                         <input type="checkbox" wire:model.live="userRoles" value="{{ $role->id }}"
                                class="form-checkbox h-5 w-5 text-primary-600">
-                        <label class="ml-2 text-gray-700 dark:text-white">{{ $role->name }}</label>
+                        <label class="ml-2 text-stone-700 dark:text-white">{{ $role->name }}</label>
                     </div>
                 @endforeach
             </div>

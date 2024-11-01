@@ -6,11 +6,11 @@
             <x-logo class="w-auto h-16 mx-auto text-indigo-600" />
         </a>
 
-        <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900 leading-9">
+        <h2 class="mt-6 text-3xl font-extrabold text-center text-stone-900 leading-9">
             Create a new account
         </h2>
 
-        <p class="mt-2 text-sm text-center text-gray-600 leading-5 max-w">
+        <p class="mt-2 text-sm text-center text-stone-600 leading-5 max-w">
             Or
             <a href="{{ route('login') }}" class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition ease-in-out duration-150">
                 sign in to your account
@@ -22,7 +22,7 @@
         <div class="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
             <form wire:submit="register">
                 <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700 leading-5">
+                    <label for="name" class="block text-sm font-medium text-stone-700 leading-5">
                         Name
                     </label>
 
@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="mt-6">
-                    <label for="email" class="block text-sm font-medium text-gray-700 leading-5">
+                    <label for="email" class="block text-sm font-medium text-stone-700 leading-5">
                         Email address
                     </label>
 
@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="mt-6">
-                    <label for="password" class="block text-sm font-medium text-gray-700 leading-5">
+                    <label for="password" class="block text-sm font-medium text-stone-700 leading-5">
                         Password
                     </label>
 
@@ -64,7 +64,7 @@
                 </div>
 
                 <div class="mt-6">
-                    <label for="password_confirmation" class="block text-sm font-medium text-gray-700 leading-5">
+                    <label for="password_confirmation" class="block text-sm font-medium text-stone-700 leading-5">
                         Confirm Password
                     </label>
 

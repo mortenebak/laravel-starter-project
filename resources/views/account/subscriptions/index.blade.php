@@ -3,8 +3,8 @@
 
 @section('content')
     @include('components.dashboard.subscription-nav')
-    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-        <div class="p-6 bg-white border-b border-gray-200 prose max-w-none">
+    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg border border-stone-200">
+        <div class="p-6 prose max-w-none">
             <h2>
                 Subscription overview
             </h2>
@@ -51,7 +51,9 @@
                     <p>You don't have a subscription. </p>
                     <a href="{{ route('subscriptions.plans') }}">
                         <x-button>
-                            Go check out our available plans
+
+                            <span>Go check out our available plans</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                         </x-button>
                     </a>
                 </div>

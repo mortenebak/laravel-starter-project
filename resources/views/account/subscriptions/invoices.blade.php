@@ -3,8 +3,8 @@
 
 @section('content')
     @include('components.dashboard.subscription-nav')
-    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-        <div class="p-6 bg-white border-b border-gray-200 prose max-w-none">
+    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg border border-stone-200">
+        <div class="p-6 prose max-w-none">
             <h2>
                 Invoices
             </h2>

@@ -1,7 +1,7 @@
 <div>
     <div class="flex justify-between items-center mb-5 h-10">
         <h1 class="text-3xl font-bold  dark:text-slate-200">
-            {{ __('Plans') }}
+            {{ __('plans.plans') }}
         </h1>
         <div>
             @can('create plans')

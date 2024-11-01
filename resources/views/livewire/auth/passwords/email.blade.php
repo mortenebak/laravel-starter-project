@@ -6,7 +6,7 @@
             <x-logo class="w-auto h-16 mx-auto text-indigo-600" />
         </a>
 
-        <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900 leading-9">
+        <h2 class="mt-6 text-3xl font-extrabold text-center text-stone-900 leading-9">
             Reset password
         </h2>
     </div>
@@ -32,7 +32,7 @@
             @else
                 <form wire:submit="sendResetPasswordLink">
                     <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 leading-5">
+                        <label for="email" class="block text-sm font-medium text-stone-700 leading-5">
                             Email address
                         </label>
 

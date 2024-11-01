@@ -6,10 +6,10 @@
             <x-logo class="w-auto h-16 mx-auto text-indigo-600" />
         </a>
 
-        <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900 leading-9">
+        <h2 class="mt-6 text-3xl font-extrabold text-center text-stone-900 leading-9">
             Confirm your password
         </h2>
-        <p class="mt-2 text-sm text-center text-gray-600 leading-5 max-w">
+        <p class="mt-2 text-sm text-center text-stone-600 leading-5 max-w">
             Please confirm your password before continuing
         </p>
     </div>
@@ -18,7 +18,7 @@
         <div class="px-4 py-8 bg-white shadow sm:rounded-lg sm:px-10">
             <form wire:submit="confirm">
                 <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700 leading-5">
+                    <label for="password" class="block text-sm font-medium text-stone-700 leading-5">
                         Password
                     </label>
 

@@ -1,4 +1,4 @@
-<section id="dashboard-nav" class="bg-white overflow-hidden mb-5 shadow-sm sm:rounded-lg">
+<section id="dashboard-nav" class="bg-white overflow-hidden mb-5 shadow-sm sm:rounded-lg border border-stone-200">
     <div class="max-w-7xl mx-auto px-6">
         <nav class="flex h-14 items-center space-x-4">
 

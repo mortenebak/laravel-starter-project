@@ -1,8 +1,8 @@
 @extends('layouts.frontend')
 
 @section('content')
-    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-        <div class="p-6 bg-white border-b border-gray-200">
+    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg border border-stone-200">
+        <div class="p-6">
             <h1 class="text-3xl font-bold mb-5">Complete your subscription purchase</h1>
             <p>Fill out the form below to complete your subscription purchase. If you have a coupon, you can apply it.</p>
             <x-card-form :action="route('subscriptions.store')">
