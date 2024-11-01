@@ -20,7 +20,7 @@ class SubscriptionController extends Controller
 
     public function store(Request $request)
     {
-        request()->validate($request, [
+        $request->validate([
             'token' => 'required',
             'coupon' => [
                 'nullable',
@@ -29,7 +29,8 @@ class SubscriptionController extends Controller
             'plan' => 'required|exists:plans,slug',
         ]);
 
-        $plan = Plan::query()->where('slug', $request->get('plan', 'pro-monthly'))
+        $plan = Plan::query()
+            ->where('slug', $request->get('plan', 'pro-monthly'))
             ->first();
 
         try {

@@ -1,7 +1,7 @@
 @props([
     'plan' => null,
 ])
-<div class="flex flex-col rounded-xl shadow-lg overflow-hidden">
+<div class="flex flex-col rounded-xl border border-stone-200 overflow-hidden">
     <div class="px-6 py-8 bg-white sm:p-10 sm:pb-6">
         <div>
             <h3 class="inline-flex px-4 py-1 rounded-full text-sm font-semibold tracking-wide uppercase bg-indigo-100 text-indigo-600" id="tier-Single">
