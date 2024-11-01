@@ -6,42 +6,49 @@ use App\Models\Plan;
 use Illuminate\Contracts\View\View;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 use LivewireUI\Modal\ModalComponent;
 
 class EditPlan extends ModalComponent
 {
     use LivewireAlert;
 
-    #[Rule(['required', 'max:255', 'unique:plans,title'])]
-    public string $title = '';
-
-    #[Rule(['required', 'max:255'])]
-    public string $slug = '';
-
-    #[Rule(['required', 'max:255'])]
-    public string $stripe_id = '';
-
     public Plan $plan;
 
-    public function mount(Plan $plan)
+    #[Validate('required|max:255')]
+    public string $title = '';
+
+    #[Validate('required|max:255')]
+    public string $slug = '';
+
+    #[Validate('required|max:255')]
+    public string $stripe_id = '';
+
+    #[Validate('nullable|string|max:255')]
+    public string $features = '';
+
+    public function mount(Plan $plan): void
     {
-        abort_if(! auth()->check(), 403);
-        abort_unless(auth()->user()->hasPermissionTo('edit plans'), 403);
+        $this->authorize('edit plans');
 
         $this->plan = $plan;
         $this->title = $plan->title ?? '';
         $this->slug = $plan->slug ?? '';
         $this->stripe_id = $plan->stripe_id ?? '';
+        $this->features = $plan->features ?? '';
     }
 
     public function save()
     {
+        $this->authorize('edit plans');
+
         $this->validate();
 
         $this->plan->update([
             'title' => $this->title,
             'slug' => $this->slug,
             'stripe_id' => $this->stripe_id,
+            'features' => $this->features,
         ]);
 
         $this->alert('success', __('plans.update_successful'));

@@ -29,6 +29,7 @@ it('has wired properties and methods', function () {
         ->assertPropertyWired('title')
         ->assertPropertyWired('slug')
         ->assertPropertyWired('stripe_id')
+        ->assertPropertyWired('features')
         ->assertMethodWired('create');
 });
 
@@ -73,6 +74,7 @@ it('can create a plan', function () {
         ->set('title', 'Test Plan')
         ->set('slug', 'test-plan')
         ->set('stripe_id', 'test-plan')
+        ->set('features', "Feature 1\nFeature 2\nFeature 3")
         ->call('create')
         ->assertHasNoErrors()
         ->assertDispatched('planCreated');
@@ -83,5 +85,6 @@ it('can create a plan', function () {
         'title' => 'Test Plan',
         'slug' => 'test-plan',
         'stripe_id' => 'test-plan',
+        'features' => "Feature 1\nFeature 2\nFeature 3",
     ]);
 });

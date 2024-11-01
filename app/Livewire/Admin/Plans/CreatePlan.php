@@ -6,34 +6,41 @@ use App\Models\Plan;
 use Illuminate\Contracts\View\View;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 use LivewireUI\Modal\ModalComponent;
 
 class CreatePlan extends ModalComponent
 {
     use LivewireAlert;
 
-    #[Rule(['required', 'max:255', 'unique:plans,title'])]
+    #[Validate('required|max:255|unique:plans,title')]
     public string $title = '';
 
-    #[Rule(['required', 'max:255', 'unique:plans,slug'])]
+    #[Validate('required|max:255|unique:plans,slug')]
     public string $slug = '';
 
-    #[Rule(['required', 'max:255', 'unique:plans,stripe_id'])]
+    #[Validate('required|max:255|unique:plans,stripe_id')]
     public string $stripe_id = '';
+
+    #[Validate('nullable|string|max:255')]
+    public string $features = '';
 
     public function create(): void
     {
+        $this->authorize('create plans');
+
         $this->validate();
 
         Plan::query()->create([
             'title' => $this->title,
             'slug' => $this->slug,
             'stripe_id' => $this->stripe_id,
+            'features' => $this->features,
         ]);
 
         $this->dispatch('planCreated');
 
-        $this->alert('success', 'Plan was created');
+        $this->alert('success', __('plans.created_successful'));
 
         $this->closeModal();
 
@@ -41,8 +48,7 @@ class CreatePlan extends ModalComponent
 
     public function mount(): void
     {
-        abort_if(! auth()->check(), 403);
-        abort_unless(auth()->user()->hasPermissionTo('create plans'), 403);
+        $this->authorize('create plans');
     }
 
     public function render(): View

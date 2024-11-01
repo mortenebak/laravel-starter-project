@@ -18,6 +18,7 @@ class PlanFactory extends Factory
             'title' => $this->faker->sentence,
             'slug' => $this->faker->slug,
             'stripe_id' => $this->faker->slug,
+            'features' => $this->faker->sentence,
         ];
     }
 }

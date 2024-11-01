@@ -13,5 +13,6 @@ class Plan extends Model
         'title',
         'slug',
         'stripe_id',
+        'features',
     ];
 }

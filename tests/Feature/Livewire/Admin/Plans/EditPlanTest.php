@@ -36,7 +36,8 @@ it('can fetch the plan from the provided plan id', function () {
         ->assertOk()
         ->assertSet('title', $plan->title)
         ->assertSet('slug', $plan->slug)
-        ->assertSet('stripe_id', $plan->stripe_id);
+        ->assertSet('stripe_id', $plan->stripe_id)
+        ->assertSet('features', $plan->features);
 
 });
 
@@ -53,6 +54,7 @@ it('has wired properties and methods', function () {
         ->assertPropertyWired('title')
         ->assertPropertyWired('slug')
         ->assertPropertyWired('stripe_id')
+        ->assertPropertyWired('features')
         ->assertMethodWired('save');
 });
 
@@ -70,6 +72,7 @@ it('can save a updated plan', function () {
         ->set('title', 'New Plan Title')
         ->set('slug', 'New-Plan-Slug')
         ->set('stripe_id', 'New Stripe ID')
+        ->set('features', 'New Features')
         ->call('save')
         ->assertHasNoErrors();
 
@@ -77,11 +80,13 @@ it('can save a updated plan', function () {
         'title' => $plan->title,
         'slug' => $plan->slug,
         'stripe_id' => $plan->stripe_id,
+        'features' => $plan->features,
     ]);
 
     expect($plan->refresh())
         ->title->toBe('New Plan Title')
         ->slug->toBe('New-Plan-Slug')
-        ->stripe_id->toBe('New Stripe ID');
+        ->stripe_id->toBe('New Stripe ID')
+        ->features->toBe('New Features');
 
 });
