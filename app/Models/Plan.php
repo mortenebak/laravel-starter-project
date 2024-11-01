@@ -15,4 +15,18 @@ class Plan extends Model
         'stripe_id',
         'features',
     ];
+
+    public function getFeaturesListAttribute(): array
+    {
+        // explode per new line
+        $list = explode("\n", $this->features);
+
+        // map the list. If a line begins with a + sign, set the included key to true,else if - sign, set to false
+        return array_map(function ($item) {
+            return [
+                'name' => ltrim($item, '+- '),
+                'included' => str_starts_with($item, '+'),
+            ];
+        }, $list);
+    }
 }

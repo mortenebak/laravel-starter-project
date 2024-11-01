@@ -71,6 +71,20 @@ php artisan db:seed
 php artisan app:create-super-admin
 ```
 
+## Setting up Stripe
+- Set stripe keys in the `.env` file.
+- Set the webhook in Stripe to point to your server with the path `/stripe/webhook`.
+- In Stripe Panel, set up to subscribe to these events:
+  -  `customer.subscription.created`
+  -  `customer.subscription.updated`
+  -  `customer.subscription.deleted`
+  -  `customer.updated`
+  -  `customer.deleted`
+  -  `payment_method.automatically_updated`
+  -  `invoice.payment_action_required`
+  -  `invoice.payment_succeeded`
+
+
 # Contributing
 Feel free to contribute to this project by submitting a pull request.
 

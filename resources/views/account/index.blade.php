@@ -2,10 +2,10 @@
 @section('title', 'Account')
 
 @section('content')
-    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg border border-stone-200">
-        <div class="p-6">
+    <x-container>
+        <x-h2>
             {{ __('Account') }}
-        </div>
-    </div>
+        </x-h2>
+    </x-container>>
 @endsection
 

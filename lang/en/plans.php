@@ -15,4 +15,5 @@ return [
     'created_successful' => 'Plan was created',
     'features' => 'Features',
     'features_hint' => 'Each feature on one line. Use + for included features and - for excluded features.',
+    'signup_for' => 'Sign up for',
 ];

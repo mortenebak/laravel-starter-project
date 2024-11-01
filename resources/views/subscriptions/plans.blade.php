@@ -1,16 +1,13 @@
 @extends('layouts.frontend')
 @section('content')
-<div class="bg-white overflow-hidden shadow-sm sm:rounded-lg border border-stone-200">
-    <div class="p-6">
-        <h1 class="text-3xl font-bold mb-5">Available Subscriptions Plans</h1>
-        <h2 class="text-xl font-bold">Select a plan to continue</h2>
-        @forelse ($plans as $plan)
-            <div>
-                <a href="{{ route('subscriptions', ['plan' => $plan->slug]) }}">{{ $plan->title }}</a>
-            </div>
-        @empty
+    <x-container>
+        <x-h2>Available Subscriptions Plans</x-h2>
+        <x-h3>Select a plan to continue</x-h3>
 
-        @endforelse
-    </div>
-</div>
+        <div class="max-w-md mx-auto space-y-4 lg:max-w-5xl lg:grid lg:grid-cols-2 lg:gap-10 lg:space-y-0">
+            @foreach($plans as $plan)
+                <x-plans.card :plan="$plan" />
+            @endforeach
+        </div>
+    </x-container>
 @endsection
