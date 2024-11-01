@@ -20,10 +20,10 @@
     </div>
     <div class="flex-1 flex flex-col justify-between px-6 pt-6 pb-8 bg-gray-50 space-y-6 sm:p-10 sm:pt-6">
         <ul role="list" class="space-y-4">
-            @foreach($plan->featuresList as $feature)
+            @foreach ($plan->featuresList as $feature)
                 <li class="flex items-start">
                     <div class="flex-shrink-0">
-                        @if($feature['included'])
+                        @if ($feature['included'])
                             <x-icon.check/>
                         @else
                             <x-icon.cross/>

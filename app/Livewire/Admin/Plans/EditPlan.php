@@ -5,7 +5,6 @@ namespace App\Livewire\Admin\Plans;
 use App\Models\Plan;
 use Illuminate\Contracts\View\View;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
-use Livewire\Attributes\Rule;
 use Livewire\Attributes\Validate;
 use LivewireUI\Modal\ModalComponent;
 
