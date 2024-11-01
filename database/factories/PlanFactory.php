@@ -19,6 +19,11 @@ class PlanFactory extends Factory
             'slug' => $this->faker->slug,
             'stripe_id' => $this->faker->slug,
             'features' => $this->faker->sentence,
+            'interval' => $this->faker->randomElement(['monthly', 'yearly']),
+            'currency' => $this->faker->currencyCode,
+            'price' => $this->faker->randomFloat(2, 1, 100),
+            'price_description' => $this->faker->sentence,
+            'description' => $this->faker->sentence,
         ];
     }
 }

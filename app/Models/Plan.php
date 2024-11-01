@@ -14,6 +14,11 @@ class Plan extends Model
         'slug',
         'stripe_id',
         'features',
+        'interval',
+        'currency',
+        'price',
+        'price_description',
+        'description',
     ];
 
     public function getFeaturesListAttribute(): array
