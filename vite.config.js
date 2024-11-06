@@ -12,4 +12,11 @@ export default defineConfig({
             refresh: ['resources/css/app.scss'],  // <-- will refresh css (tailwind ) as well
         }),
     ],
+    css: {
+        preprocessorOptions: {
+            scss: {
+                api: 'modern-compiler',
+            }
+        }
+    }
 })
