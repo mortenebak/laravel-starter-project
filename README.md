@@ -5,7 +5,7 @@
 
 ![alt text](docs/backend.png "Backend View")
 
-> Updated for Laravel 11.0 **and** Livewire 3.0
+> Updated for Laravel 12.0 **and** Livewire 3.0
 
 This repository contains my starting point when developing a new Laravel project.
 It comes with a basic user management, role management and permissions management and a dashboard.
