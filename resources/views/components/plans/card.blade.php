@@ -5,17 +5,19 @@
     <div class="px-6 py-8 bg-white sm:p-10 sm:pb-6">
         <div>
             <h3 class="inline-flex px-4 py-1 rounded-full text-sm font-semibold tracking-wide uppercase bg-indigo-100 text-indigo-600" id="tier-Single">
-                Monthly
+                {{ $plan->title }}
             </h3>
         </div>
         <div class="mt-4 flex items-baseline text-6xl font-extrabold">
-            <span class="">$4</span>
+            <span class="">
+                {{ $plan->price }} {{ $plan->currency }}
+            </span>
         </div>
         <div class="mt-1 text-sm text-gray-600">
-            Per Month
+            / {{ $plan->price_description }}
         </div>
         <p class="mt-5 text-lg text-gray-500">
-            Quisquam incidunt ut laborum laboriosam. Quia, ut. Officiis et placeat autem.
+            {{ $plan->description }}
         </p>
     </div>
     <div class="flex-1 flex flex-col justify-between px-6 pt-6 pb-8 bg-gray-50 space-y-6 sm:p-10 sm:pt-6">
