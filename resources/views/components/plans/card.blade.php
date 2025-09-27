@@ -4,7 +4,7 @@
 <div class="flex flex-col rounded-xl border border-stone-200 overflow-hidden">
     <div class="px-6 py-8 bg-white sm:p-10 sm:pb-6">
         <div>
-            <h3 class="inline-flex px-4 py-1 rounded-full text-sm font-semibold tracking-wide uppercase bg-indigo-100 text-indigo-600" id="tier-Single">
+            <h3 class="inline-flex px-4 py-1 rounded-full text-sm font-semibold tracking-wide uppercase bg-primary-100 text-primary-600" id="tier-Single">
                 {{ $plan->title }}
             </h3>
         </div>
@@ -37,7 +37,7 @@
         </ul>
         <div class="rounded-md shadow">
             <a href="{{ route('subscriptions', ['plan' => $plan->slug]) }}"
-               class="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-emerald-700 hover:bg-emerald-800" aria-describedby="tier-Single">
+               class="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-700 hover:bg-primary-800" aria-describedby="tier-Single">
                 {{ __('plans.signup_for') }} {{ $plan->title }}
             </a>
         </div>

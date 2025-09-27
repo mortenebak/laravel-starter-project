@@ -11,7 +11,7 @@ use App\Livewire\Auth\Passwords\Email;
 use App\Livewire\Auth\Passwords\Reset;
 use App\Livewire\Auth\Register;
 use App\Livewire\Auth\Verify;
-use Illuminate\Support\Facades\Route;
+use App\Livewire\Home;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +24,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome')->name('home');
+Route::get('/', Home::class)->name('home');
+Route::get('features', \App\Livewire\Features::class)->name('features');
+Route::get('pricing', \App\Livewire\Pricing::class)->name('pricing');
 
 Route::middleware('guest')->group(function () {
     Route::get('login', Login::class)

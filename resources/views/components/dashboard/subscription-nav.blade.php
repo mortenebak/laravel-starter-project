@@ -1,8 +1,7 @@
 <section id="dashboard-nav" class="bg-white overflow-hidden mb-5 shadow-sm sm:rounded-lg border border-stone-200">
-    <div class="max-w-7xl mx-auto px-6">
+    <div class="container mx-auto px-6">
         <nav class="flex h-14 items-center space-x-4">
-            <div class="flex h-full items-center space-x-4 ">
-
+            <div class="flex h-full items-center gap-4 w-full">
                 <x-nav.subscription-navitem to_route="account.subscriptions">
                     {{ __('Overview') }}
                 </x-nav.subscription-navitem>
@@ -38,6 +37,11 @@
                     {{ __('Invoices') }}
                 </x-nav.subscription-navitem>
 
+                <div class="flex-1"></div>
+
+                <x-nav.subscription-navitem to_route="account.subscriptions">
+                    {{ __('My Profile') }}
+                </x-nav.subscription-navitem>
 
             </div>
         </nav>
