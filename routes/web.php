@@ -27,6 +27,9 @@ use App\Livewire\Home;
 Route::get('/', Home::class)->name('home');
 Route::get('features', \App\Livewire\Features::class)->name('features');
 Route::get('pricing', \App\Livewire\Pricing::class)->name('pricing');
+Route::get('about', \App\Livewire\About::class)->name('about');
+Route::get('terms', \App\Livewire\Terms::class)->name('terms');
+Route::get('privacy', \App\Livewire\Privacy::class)->name('privacy');
 
 Route::middleware('guest')->group(function () {
     Route::get('login', Login::class)
