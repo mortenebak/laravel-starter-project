@@ -49,7 +49,7 @@ class EditRole extends ModalComponent
             ]);
 
             // convert string to int
-            $permissions = collect($this->selectedPermissions)->map(fn ($permission): int => (int) $permission)->toArray();
+            $permissions = collect($this->rolePermissions)->map(fn ($permission): int => (int) $permission)->toArray();
 
             // Sync role permissions
             $this->role->syncPermissions($permissions);
