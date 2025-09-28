@@ -4,6 +4,7 @@ namespace App\Livewire\Admin\Users;
 
 use App\Models\User;
 use Exception;
+use Illuminate\Support\Arr;
 use Illuminate\View\View;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Attributes\Rule;
@@ -35,7 +36,7 @@ class EditUser extends ModalComponent
         $this->email = $this->user->email;
 
         // get user roles
-        $this->userRoles = $this->user->roles->pluck('id')->toArray() ?? [];
+        $this->userRoles = $this->user->roles->pluck('id')->toArray();
     }
 
     public function update(): void
@@ -50,8 +51,11 @@ class EditUser extends ModalComponent
                 'email' => $this->email,
             ]);
 
-            // Update roles
-            $this->user->syncRoles($this->userRoles);
+            // Convert the userRoles to integers
+            $userRoles = Arr::map($this->userRoles, fn ($role): int => (int) $role);
+
+            // Sync the user roles
+            $this->user->syncRoles($userRoles);
 
             $this->alert('success', 'User Updated Successfully!');
 

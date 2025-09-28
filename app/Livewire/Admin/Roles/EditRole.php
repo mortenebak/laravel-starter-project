@@ -48,12 +48,15 @@ class EditRole extends ModalComponent
                 'name' => $this->name,
             ]);
 
-            // Update roles
-            $this->role->syncPermissions($this->rolePermissions);
+            // convert string to int
+            $permissions = collect($this->selectedPermissions)->map(fn ($permission): int => (int) $permission)->toArray();
+
+            // Sync role permissions
+            $this->role->syncPermissions($permissions);
 
             $this->alert('success', 'Role updated successfully!');
 
-            // emit event to refresh users table
+            // emit event to refresh roles table
             $this->dispatch('roleUpdated');
 
             $this->closeModal();
