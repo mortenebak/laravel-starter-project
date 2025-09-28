@@ -1,8 +1,14 @@
 <div>
-    <div class="flex justify-between items-center mb-5 h-10">
-        <h1 class="text-3xl font-bold  dark:text-slate-200">
-            {{ __('plans.plans') }}
-        </h1>
+    <div class="flex justify-between items-center mb-5">
+        <div>
+            <h1 class="text-3xl font-bold  dark:text-slate-200">
+                {{ __('plans.plans') }}
+            </h1>
+            <x-p class="max-w-2xl">
+                This is where you can manage subscription plans for your users. The system supports only Stripe as a payment gateway.
+                You can create, edit, and delete plans as needed. Currently, one subscription is supported. Plans should therefore be variants of the same subscription.
+            </x-p>
+        </div>
         <div>
             @can('create plans')
                 <button
@@ -32,10 +38,10 @@
         <x-table wire:loading.class="opacity-50">
             <x-slot name="head">
                 <x-table.heading><a href="#" wire:click.prevent="sortBy('id')">{{ __('ID') }}</a></x-table.heading>
-                <x-table.heading><a href="#" wire:click.prevent="sortBy('title')">{{ __('Title') }}</a>
-                </x-table.heading>
-                <x-table.heading><a href="#" wire:click.prevent="sortBy('stripe_id')">{{ __('Stripe ID') }}</a>
-                </x-table.heading>
+                <x-table.heading><a href="#" wire:click.prevent="sortBy('title')">{{ __('Title') }}</a></x-table.heading>
+                <x-table.heading><a href="#" wire:click.prevent="sortBy('interval')">{{ __('Interval') }}</a></x-table.heading>
+                <x-table.heading>{{ __('Price') }}</x-table.heading>
+                <x-table.heading><a href="#" wire:click.prevent="sortBy('stripe_id')">{{ __('Stripe ID') }}</a></x-table.heading>
                 <x-table.heading class="text-right">{{ __('Actions') }}</x-table.heading>
             </x-slot>
 
@@ -45,7 +51,14 @@
                         <x-table.cell>
                             {{ $plan->id }}
                         </x-table.cell>
-                        <x-table.cell>{{ $plan->title }}</x-table.cell>
+                        <x-table.cell>
+                            {{ $plan->title }}<br>
+                            <span class="text-xs text-gray-500 dark:text-gray-400">
+                                {{ $plan->slug }}
+                            </span>
+                        </x-table.cell>
+                        <x-table.cell>per {{ $plan->interval }}</x-table.cell>
+                        <x-table.cell>{{ $plan->price }} {{ $plan->currency }}</x-table.cell>
                         <x-table.cell>{{ $plan->stripe_id }}</x-table.cell>
                         <x-table.cell class="text-right">
                             @can('edit plans')

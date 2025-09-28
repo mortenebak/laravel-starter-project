@@ -20,6 +20,15 @@ class EditPlan extends ModalComponent
     #[Validate('required|max:255')]
     public string $slug = '';
 
+    #[Validate('required|string|max:255|in:month,year')]
+    public string $interval = 'month';
+
+    #[Validate('required|string|max:255')]
+    public string $price = '';
+
+    #[Validate('required|string|max:3')]
+    public string $currency = 'DKK';
+
     #[Validate('required|max:255')]
     public string $stripe_id = '';
 
@@ -35,6 +44,9 @@ class EditPlan extends ModalComponent
         $this->slug = $plan->slug ?? '';
         $this->stripe_id = $plan->stripe_id ?? '';
         $this->features = $plan->features ?? '';
+        $this->price = $plan->price ?? '';
+        $this->currency = $plan->currency ?? 'DKK';
+        $this->interval = $plan->interval ?? '';
     }
 
     public function save()
@@ -48,6 +60,9 @@ class EditPlan extends ModalComponent
             'slug' => $this->slug,
             'stripe_id' => $this->stripe_id,
             'features' => $this->features,
+            'price' => $this->price,
+            'currency' => $this->currency,
+            'interval' => $this->interval,
         ]);
 
         $this->alert('success', __('plans.update_successful'));

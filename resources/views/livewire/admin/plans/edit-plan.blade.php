@@ -4,24 +4,26 @@
         {{ __('Edit Plan') }}
     </h2>
 
-    <div class="form-group">
-        <label for="title" class="block mb-2 text-sm font-medium text-stone-900 dark:text-white">
-            {{ __('Title') }}
-        </label>
-        <input id="title" wire:model.live="title" type="text"
-               class="@error('title') is-invalid @enderror bg-gray-50 border border-gray-300 text-stone-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-               placeholder="Enter title" required>
-        @error('title') <span class="text-danger">{{ $message }}</span>@enderror
-    </div>
+    <div class="flex gap-6">
+        <div class="form-group w-full">
+            <label for="title" class="block mb-2 text-sm font-medium text-stone-900 dark:text-white">
+                {{ __('Title') }}
+            </label>
+            <input id="title" wire:model.live="title" type="text"
+                   class="@error('title') is-invalid @enderror bg-gray-50 border border-gray-300 text-stone-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                   placeholder="Enter title" required>
+            @error('title') <span class="text-danger">{{ $message }}</span>@enderror
+        </div>
 
-    <div class="form-group">
-        <label for="slug" class="block mb-2 text-sm font-medium text-stone-900 dark:text-white">
-            {{ __('Slug') }}
-        </label>
-        <input id="slug" wire:model.live="slug" type="text"
-               class="@error('slug') is-invalid @enderror bg-gray-50 border border-gray-300 text-stone-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-               placeholder="Enter slug" required>
-        @error('slug') <span class="text-danger">{{ $message }}</span>@enderror
+        <div class="form-group w-full">
+            <label for="slug" class="block mb-2 text-sm font-medium text-stone-900 dark:text-white">
+                {{ __('Slug') }}
+            </label>
+            <input id="slug" wire:model.live="slug" type="text"
+                   class="@error('slug') is-invalid @enderror bg-gray-50 border border-gray-300 text-stone-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                   placeholder="Enter slug" required>
+            @error('slug') <span class="text-danger">{{ $message }}</span>@enderror
+        </div>
     </div>
 
     <div class="form-group">
@@ -33,6 +35,37 @@
                placeholder="Enter Stripe ID" required>
         @error('stripe_id') <span class="text-danger">{{ $message }}</span>@enderror
     </div>
+
+    <div class="flex gap-6">
+        <div class="form-group w-full">
+            <label for="price" class="block mb-2 text-sm font-medium text-stone-900 dark:text-white">
+                {{ __('Price') }}
+            </label>
+            <input id="price" wire:model.live="price" type="text"
+                   class="@error('price') is-invalid @enderror bg-gray-50 border border-gray-300 text-stone-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                   placeholder="Enter Price" required>
+            @error('price') <span class="text-danger">{{ $message }}</span>@enderror
+        </div>
+        <div class="form-group">
+            <label for="currency" class="block mb-2 text-sm font-medium text-stone-900 dark:text-white">
+                {{ __('Currency') }}
+            </label>
+            <input id="currency" wire:model.live="currency" type="text"
+                   class="@error('currency') is-invalid @enderror bg-gray-50 border border-gray-300 text-stone-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                   placeholder="Enter currency" required>
+            @error('currency') <span class="text-danger">{{ $message }}</span>@enderror
+        </div>
+        <div class="form-group">
+            <label for="interval" class="block mb-2 text-sm font-medium text-stone-900 dark:text-white">
+                {{ __('Interval') }}
+            </label>
+            <input id="interval" wire:model.live="interval" type="text"
+                   class="@error('interval') is-invalid @enderror bg-gray-50 border border-gray-300 text-stone-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                   placeholder="Enter interval" required>
+            @error('interval') <span class="text-danger">{{ $message }}</span>@enderror
+        </div>
+    </div>
+
     <div class="form-group">
         <label for="features" class="block mb-2 text-sm font-medium text-stone-900 dark:text-white">
             {{ __('plans.features') }}

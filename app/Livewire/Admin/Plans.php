@@ -51,6 +51,17 @@ class Plans extends Component
         $this->sortField = $field;
     }
 
+    public function deletePlan(string $id): void
+    {
+        try {
+            Plan::query()->where('id', '=', $id)->delete();
+            $this->alert('success', __('plans.plan_was_deleted'));
+            $this->dispatch('deletePlan');
+        } catch (Exception $e) {
+            $this->alert('error', __('plans.something_went_wrong'));
+        }
+    }
+
     #[Layout('layouts.admin')]
     public function render(): View
     {
@@ -62,16 +73,5 @@ class Plans extends Component
                 ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                 ->paginate($this->perPage),
         ]);
-    }
-
-    public function deletePlan(string $id): void
-    {
-        try {
-            Plan::query()->where('id', '=', $id)->delete();
-            $this->alert('success', __('plans.plan_was_deleted'));
-            $this->dispatch('deletePlan');
-        } catch (Exception $e) {
-            $this->alert('error', __('plans.something_went_wrong'));
-        }
     }
 }
